@@ -17,7 +17,7 @@ function HeroSection() {
                 className="absolute inset-0 h-full w-full object-cover"
             >
                 <source
-                    src="/videos/loghanteh/hero/loghante-hero-video.mp4"
+                    src="https://74aex8lzr0js8tkj.public.blob.vercel-storage.com/loghante-hero-video.mp4"
                     type="video/mp4"
                 />
             </video>

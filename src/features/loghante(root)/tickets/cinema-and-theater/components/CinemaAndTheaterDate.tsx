@@ -103,7 +103,7 @@ function CinemaAndTheaterDate({
     return (
         <div className="w-full">
 
-            <div className="w-full overflow-x-auto overflow-y-hidden xl:overflow-x-visible">
+            <div className="w-full overflow-x-auto overflow-y-hidden xl:overflow-x-visible py-5">
 
                 <div className="py-5">
                     <span className="text-lg font-semibold">
@@ -120,8 +120,7 @@ function CinemaAndTheaterDate({
                         grid
                         min-w-[1000px]
                         grid-cols-7
-                        gap-5
-                        py-2
+                        sm:gap-5 gap-3
                         xl:min-w-0
                     "
                 >

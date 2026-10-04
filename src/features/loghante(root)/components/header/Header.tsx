@@ -72,7 +72,7 @@ function Header() {
             {/* Hamburger */}
             <IoIosMenu
               className={cn(
-                "size-11",
+                "sm:size-11 size-15",
                 "cursor-pointer",
                 "click-scale",
                 "transition-all",
@@ -180,7 +180,7 @@ function Header() {
                 )}
               >
                 <FiShoppingBag className="size-4" />
-                Shop
+                {t("shop-button")}
               </Button>
             </AppLink>
           </div>

@@ -98,6 +98,8 @@ function HallContent({
                     col-span-12
                     lg:col-span-8
                     lg:order-2
+                    w-full
+                    overflow-x-scroll
                 "
             >
                 <SeatsWrapper

@@ -148,6 +148,7 @@ function HamburgerMenu({
                         <TicketDropDown
                             t={t}
                             isScrolled={false}
+                            UnActiveHumberHandler={UnActiveHumberHandler}
                             className="w-full"
                         />
 

@@ -30,7 +30,7 @@ interface ISubMenu {
 const subMenuLinkClass = cn(
   "w-full",
   "block",
-  "px-7 py-6",
+  "px-4 md:px-7 py-6",
   "border-b border-b-black/25",
   "hover:bg-[var(--white-light-color)]",
   "transition-all",

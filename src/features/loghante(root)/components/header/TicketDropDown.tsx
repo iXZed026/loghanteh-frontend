@@ -19,12 +19,14 @@ interface ITicketDropDown {
     t?: TranslationFunction;
     isScrolled?: boolean;
     className?: string;
+    UnActiveHumberHandler?: () => void ;
 }
 
 function TicketDropDown({
     t,
     isScrolled = false,
     className,
+    UnActiveHumberHandler
 }: ITicketDropDown) {
 
     const [
@@ -138,7 +140,11 @@ function TicketDropDown({
                                     : "hover:bg-[#42151A]/50",
                             )}
                             onClick={
-                                UnActiveTicketDropDownHandler
+                                () => {
+                                    UnActiveTicketDropDownHandler()
+
+                                    UnActiveHumberHandler && UnActiveHumberHandler()
+                                }
                             }
                         >
                             {getLocalizedValue(

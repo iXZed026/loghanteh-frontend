@@ -129,14 +129,14 @@ function MuseumsTourTickets() {
             </div>
 
             {/* Day Of The Weeks */}
-            <div className="w-full overflow-y-hidden overflow-x-auto xl:overflow-x-visible">
+            <div className="w-full overflow-y-hidden overflow-x-auto py-5 xl:overflow-x-visible">
 
                 <StaggerWrapper
                     once
                     variants={
                         dayOfTheWeeksContainerVariant
                     }
-                    className="grid grid-cols-7 gap-5 min-w-[1000px] xl:min-w-0 py-2"
+                    className="grid grid-cols-7 md:gap-5 gap-3 min-w-[1000px] xl:min-w-0 py-2"
                 >
                     <DayOfWeekBox
                         selectedDate={selectedDate}
