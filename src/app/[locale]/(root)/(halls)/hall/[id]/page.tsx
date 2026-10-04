@@ -58,7 +58,7 @@ function HallPage() {
     return (
         <HallGuard>
 
-            <div className="min-h-screen py-30">
+            <div className="min-h-screen py-30 overflow-x-hidden w-full">
 
                 <div
                     className="

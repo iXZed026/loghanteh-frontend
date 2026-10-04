@@ -48,7 +48,7 @@ function EventsAndCoursesHeaderImages({
 
             <div className="w-full overflow-hidden">
                 <FadeUp
-                    y={300}
+                    y={200}
                     key={imageSrc}
                     once
                     transition={
