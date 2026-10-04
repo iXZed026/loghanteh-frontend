@@ -26,7 +26,7 @@ export const cafesAndFoods: ICafesAndFoods[] = [
             en: "Tasty street food and snacks, available throughout the day.",
             fa: "غذاهای خیابانی خوشمزه و میان‌وعده‌ها، در تمام طول روز موجود است."
         },
-        href: "/",
+        href: "/cafe-menu",
         imageURL: "",
     },
     {
@@ -39,7 +39,7 @@ export const cafesAndFoods: ICafesAndFoods[] = [
             en: "Tasty street food and snacks, available throughout the day.",
             fa: "غذاهای خیابانی خوشمزه و میان‌وعده‌ها، در تمام طول روز موجود است."
         },
-        href: "/",
+        href: "/cafe-menu",
         imageURL: "",
     },
     {
@@ -52,7 +52,7 @@ export const cafesAndFoods: ICafesAndFoods[] = [
             en: "Tasty street food and snacks, available throughout the day.",
             fa: "غذاهای خیابانی خوشمزه و میان‌وعده‌ها، در تمام طول روز موجود است."
         },
-        href: "/",
+        href: "/cafe-menu",
         imageURL: "",
     },
 ]
