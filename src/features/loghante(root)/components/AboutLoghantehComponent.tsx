@@ -58,6 +58,7 @@ function AboutLoghantehComponent({
                     >
                         <h2 className={cn(
                             "font-wulkan",
+                            "leading-12",
                             "loghante-section-title",
                             "mb-8 lg:text-start text-center"
                         )}>
@@ -70,7 +71,7 @@ function AboutLoghantehComponent({
                         once
                     >
                         <h4 className={cn(
-                            "leading-7",
+                            "leading-7 md:text-start text-center",
                             "text-black-light-utility",
                         )}>
                             {description}

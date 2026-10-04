@@ -24,7 +24,7 @@ function HeroSection() {
             {/* Content */}
             <div className={cn(
                 "w-full",
-                "py-12",
+                "md:py-12 py-8",
                 "absolute bottom-0 left-0",
                 "gradient-shadow",
             )}>
@@ -34,7 +34,7 @@ function HeroSection() {
                             {t("video-title")}
                         </h1>
 
-                        <p className="mt-4 text-md md:text-xl scale-y-85">
+                        <p className="md:mt-4 mt-2 text-md md:text-xl scale-y-85">
                             {t("video-description")}
                         </p>
                     </div>
