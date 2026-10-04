@@ -1,0 +1,17 @@
+{
+    "title": "Loghanteh Workshops and studios",
+    "description": "Step into the diverse world of Loghanteh Workshops and studios and discover a new story every time.",
+    "page": {
+        "submit-button": "Submit a Request",
+        "contact": "Contact Customer Affairs: ",
+        "inputs": {
+            "title": "Please fill in your information:",
+            "full-name": "Full Name",
+            "email-or-phone": "Email Or Phone",
+            "optional":"Optional",
+            "company-name": "Company Name",
+            "description": "Description",
+            "submit-button": "Submit Request"
+        }
+    }
+}

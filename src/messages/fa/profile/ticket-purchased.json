@@ -1,0 +1,15 @@
+{
+    "title": "بلیط خریداری شد",
+    "ticket-box": {
+        "status": "وضعیت بلیط",
+        "date": "تاریخ",
+        "time": "ساعت",
+        "duration": "مدت زمان",
+        "Tickets": "بلیط‌ها"
+    },
+    "ticket-status": {
+        "upcoming": "به زودی",
+        "past": "گذشته",
+        "progress": "در حال برگذاری"
+    }
+}

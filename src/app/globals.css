@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  --crimson-color: #5c2127;
+  --crimson-hover-color: #630a14;
+  /* --crimson-opacity-color: #5C212759; */
+   --crimson-opacity-color: #5c2127bc;
+  --black-color: #161616;
+  --black-light-color: #525252;
+  --white-color: #FFFFFF;
+  --white-light-color: rgb(231, 225, 225);
+  --gold-color: #d2ae6d;
+  --gold-opacity-color: #D2AE6D59;
+  --gold-hover-color: #936c23;
+}
+
+
+@theme {
+  --font-poppins: var(--font-poppins-local);
+  --font-wulkan: var(--font-wulkan-local);
+  --font-rozname: var(--font-rozname-local);
+  /* --font-ordibehesht: var(--font-ordibehesht-local); */
+}
+
+body {
+  font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-rozname), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--crimson-color) transparent;
+}
+
+
+@layer utilities {
+
+  /* Colors */
+
+  .bg-crimson {
+    @apply bg-[var(--crimson-color)];
+  }
+
+  .bg-hover-crimson {
+    @apply hover:bg-[var(--crimson-hover-color)];
+  }
+
+  .bg-opacity-hover-crimson {
+    @apply hover:bg-[var(--crimson-opacity-color)];
+  }
+
+  .text-crimson {
+    @apply text-[var(--crimson-color)];
+  }
+
+  .text-hover-crimson {
+    @apply hover:text-[var(--crimson-hover-color)];
+  }
+
+  .text-black-utility {
+    @apply text-[var(--black-color)];
+  }
+
+  .border-black-opacity {
+    @apply border-[#0e0e0e59]
+  }
+
+  .text-black-light-utility {
+    @apply text-[var(--black-light-color)];
+  }
+
+  .bg-black-light-utility {
+    @apply bg-[var(--black-light-color)];
+  }
+
+  .text-white-utility {
+    @apply text-[var(--white-color)];
+  }
+
+  .bg-white-utility {
+    @apply bg-[var(--white-color)];
+  }
+
+  .bg-white-light-utility {
+    @apply bg-[var(--white-light-color)];
+  }
+
+  .text-white-light-utility {
+    @apply text-[var(--white-light-color)];
+  }
+
+  .text-gold-utility {
+    @apply text-[var(--gold-color)];
+  }
+
+  .bg-gold-utility {
+    @apply bg-[var(--gold-color)];
+  }
+
+  .bg-gold-opacity {
+    @apply bg-[#D2AE6D59]
+  }
+
+  .border-gold-opacity {
+    @apply border-[#D2AE6D59]
+  }
+
+  .bg-hover-gold {
+    @apply hover:bg-[var(--gold-hover-color)];
+  }
+
+  .text-hover-gold {
+    @apply hover:text-[var(--gold-hover-color)];
+  }
+
+  /* Flex */
+  .fcc {
+    @apply flex justify-center items-center;
+  }
+
+  .fbs {
+    @apply flex justify-between items-start;
+  }
+
+  .fbc {
+    @apply flex justify-between items-center;
+  }
+
+  .fec {
+    @apply flex justify-end items-center;
+  }
+
+  .fcol {
+    @apply flex flex-col;
+  }
+
+  /* Others */
+
+  .button {
+    @apply outline-none cursor-pointer transition-all duration-300;
+  }
+
+  .input {
+    @apply outline-none px-4 py-2 w-full tracking-wider;
+  }
+
+  .click-scale {
+    @apply active:scale-95 duration-150
+  }
+
+  .opacity-utility {
+    @apply opacity-65
+  }
+
+  .gradient-shadow {
+    @apply bg-gradient-to-b from-[#0a0a0a0f] to-[#000000]
+  }
+}

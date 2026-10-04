@@ -1,0 +1,36 @@
+{
+  "header": {
+    "title": "جزئیات بلیت"
+  },
+  "ticket": {
+    "digitalTicket": "بلیت دیجیتال",
+    "date": "تاریخ",
+    "time": "ساعت",
+    "duration": "مدت زمان",
+    "minutes": "دقیقه",
+    "tickets": "تعداد بلیت",
+    "eventInformation": "اطلاعات رویداد",
+    "event": "رویداد",
+    "type": "نوع",
+    "hall": "سالن",
+    "reservedSeats": "صندلی‌های رزرو شده",
+    "seatCount": "صندلی",
+    "row": "ردیف",
+    "generalAdmission": "ورود عمومی",
+    "noAssignedSeats": "این بلیت دارای صندلی اختصاصی نیست.",
+    "price": "قیمت",
+    "currency": "ریال",
+    "entryMessage": "لطفاً هنگام ورود به مجموعه این بلیت را همراه داشته باشید.",
+    "scanTicket": "بلیت خود را اسکن کنید"
+  },
+  "pdf": {
+    "download": "دانلود بلیت",
+    "generating": "در حال ایجاد PDF...",
+    "error": "ایجاد PDF بلیت با خطا مواجه شد."
+  },
+  "states": {
+    "invalidTicketId": "شناسه بلیت نامعتبر است.",
+    "loadFailed": "دریافت جزئیات بلیت با خطا مواجه شد.",
+    "loadError": "خطایی هنگام دریافت جزئیات بلیت رخ داد."
+  }
+}

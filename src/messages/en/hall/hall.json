@@ -1,0 +1,15 @@
+{
+    "hall-details":{
+        "title":"Choose your seats",
+        "amount":"Amount Paid",
+        "change":"Change",
+        "time":"Time"
+    },
+    "select-seat":{
+        "no-seat":"No seats selected yet.",
+        "select-seat":"Selected Seats",
+        "row":"Row",
+        "seat":"Seats",
+        "payment-button":"Continue to Payment"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "header": {
+        "title": "Loghanteh tour Museum",
+        "description": "At Loghanteh Store, you can purchase cultural products, collectible models, books, and special souvenirs from the collection. At Loghanteh Store, you can purchase cultural products, collectible models, books, and special souvenirs from the collection."
+    },
+    "day-of-the-weeks": {
+        "title": "Choose a date and buy a ticket"
+    },
+    "ticket-box": {
+        "capacity":"Remaining capacity:",
+        "ticket-count":"Number of tickets",
+        "book-button": "Book a Ticket"
+    }
+}

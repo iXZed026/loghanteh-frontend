@@ -1,0 +1,15 @@
+{
+    "title": "Ticket purchased",
+    "ticket-box": {
+        "status": "Ticket status",
+        "date": "Date",
+        "time": "time",
+        "duration": "Duration",
+        "Tickets": "Tickets"
+    },
+    "ticket-status":{
+        "upcoming":"Upcoming",
+        "past":"Past",
+        "progress":"In progress"
+    }
+}

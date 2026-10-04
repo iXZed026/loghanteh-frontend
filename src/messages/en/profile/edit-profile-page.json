@@ -1,0 +1,30 @@
+{
+    "title": "My profile",
+    "description": "You can complete or edit your information here.",
+    "inputs": {
+        "full-name": {
+            "title": "Full Name"
+        },
+        "phone": {
+            "title": "Change Phone Number   "
+        },
+        "email": {
+            "title": "Email Addres"
+        },
+        "password": {
+            "title": "Password"
+        },
+        "date": {
+            "title": "Date of birth:",
+            "day": "DD",
+            "mounth": "MM",
+            "year": "YYYY"
+        },
+        "gender": {
+            "title": "Choose your gender:",
+            "male": "Male",
+            "female": "Female"
+        }
+    },
+    "apply-button": "Apply"
+}

@@ -1,0 +1,36 @@
+{
+    "header": {
+      "title": "Ticket Details"
+    },
+    "ticket": {
+      "digitalTicket": "Digital Ticket",
+      "date": "Date",
+      "time": "Time",
+      "duration": "Duration",
+      "minutes": "min",
+      "tickets": "Tickets",
+      "eventInformation": "Event Information",
+      "event": "Event",
+      "type": "Type",
+      "hall": "Hall",
+      "reservedSeats": "Reserved Seats",
+      "seatCount": "Seats",
+      "row": "Row",
+      "generalAdmission": "General Admission",
+      "noAssignedSeats": "This ticket does not have assigned seats.",
+      "price": "Price",
+      "currency": "IRR",
+      "entryMessage": "Please keep this ticket available when entering the venue.",
+      "scanTicket": "Scan your ticket"
+    },
+    "pdf": {
+      "download": "Download Ticket",
+      "generating": "Generating PDF...",
+      "error": "Failed to generate ticket PDF."
+    },
+    "states": {
+      "invalidTicketId": "Invalid ticket ID.",
+      "loadFailed": "Failed to load ticket details.",
+      "loadError": "An error occurred while loading ticket details."
+    }
+}

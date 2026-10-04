@@ -1,0 +1,23 @@
+{
+    "summery": {
+        "description": "Discover a world where history, culture, and heritage come together. Loghanteh Historical and Cultural Complex is home to a collection of unique museums, each offering a distinct journey through art, innovat."
+    },
+    "quick-access": {
+        "title": "Quick Access",
+        "links": {
+            "home": "Home Page",
+            "about": "About Museum",
+            "museums": "Museums",
+            "shop": "Shop",
+            "virtual-tour": "Virtual Tour"
+        }
+    },
+    "contacts": {
+       "title":"Contacts & Address",
+       "list-items":{
+        "phone":"021-65555555",
+        "opening-hours": "From 8 AM To 4 PM",
+        "address": "Tehran, Iran, Loghanteh Historical and Cultural Complex"
+       }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "header": {
+        "title": "Conference Halls",
+        "description": "Loghanteh Complex, with its diverse spaces and advanced equipment, is ready to host your events, conferences, and ceremonies."
+    },
+    "space": {
+        "title": "Choose your space",
+        "description": "Find your desired salon to learn about details of facilities and prices.",
+        "boxes":{
+            "details-button":"View Details"
+        }
+    },
+    "page": {
+        "download-button": "Download Form Information",
+        "contact": "Contact Customer Affairs: ",
+        "inputs": {
+            "title": "Please enter the following information to request this Hall:",
+            "full-name": "Full Name",
+            "email-or-phone": "Email Or Phone",
+            "optional":"Optional",
+            "company-name": "Company Name",
+            "description": "Description",
+            "submit-button": "Submit Request"
+        }
+    },
+
+    "parameters": {
+        "person": "Person",
+        "square-meters": "m²"
+    }
+}

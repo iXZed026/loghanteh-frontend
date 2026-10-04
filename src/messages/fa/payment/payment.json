@@ -1,0 +1,40 @@
+{
+  "ticket-info": {
+    "ticket": "بلیت",
+    "tickets": "بلیت",
+    "location": "تهران - شهید قدوسی",
+    "ticket-date": {
+      "change-button": "تغییر"
+    },
+    "hall": {
+      "title": "محل برگزاری",
+      "seats": "صندلی‌های انتخاب‌شده",
+      "row":"ردیف"
+    },
+    "rules": {
+      "title": "قوانین بلیت"
+    }
+  },
+  "payment-details": {
+    "title": "جزئیات پرداخت",
+    "ticket-details": {
+      "ticket": "بلیت",
+      "ticket-count": "نفر"
+    },
+    "ticket-vat": {
+      "ticket-vat": "مالیات بلیت"
+    },
+    "payable": "مبلغ قابل پرداخت",
+    "drop-down": {
+      "title": "کد تخفیف دارید؟",
+      "discount-placeholder": "کد تخفیف خود را وارد کنید",
+      "apply-button": "اعمال"
+    },
+    "payment-method": {
+      "title": "روش پرداخت",
+      "saman": "درگاه سامان",
+      "another": "درگاه دیگر"
+    },
+    "payment-button": "پرداخت و دریافت بلیت"
+  }
+}

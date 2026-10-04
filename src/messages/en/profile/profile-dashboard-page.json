@@ -1,0 +1,29 @@
+{
+    "title": "Dashboard",
+    "sub-title-first-section": "Welcome back, ",
+    "sub-title-second-section": " here’s a quick overview of your activity at Loghanteh ",
+    "activity": {
+        "upcoming-visit": {
+            "title": "Upcoming Visit"
+        },
+        "tickets": {
+            "title": "Tickets"
+        },
+        "collections": {
+            "title": "Collections"
+        }
+    },
+    "upcoming-ticket": {
+        "ticket-details": {
+            "reservation-code": "Reservation code: "
+        },
+        "date-and-views": {
+            "view-ticket-button": "View Ticket"
+        }
+    },
+    "discover-museums": {
+        "title": "Discover the museums of Loghanteh",
+        "sub-title": "Explore our museums, exhibitions and cultural collections",
+        "museums-button": "Explore Museums"
+    }
+}

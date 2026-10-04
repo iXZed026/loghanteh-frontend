@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@utility loghante-section {
+    @apply py-30 min-h-screen ;
+}
+
+@utility loghante-section-title {
+    @apply  font-bold md:text-5xl text-4xl;
+}

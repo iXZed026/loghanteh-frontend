@@ -1,0 +1,1 @@
+export const DEVELOPMENT = process.env.NEXT_PUBLIC_DEVELOPMENT === "true";

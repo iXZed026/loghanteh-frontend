@@ -1,0 +1,14 @@
+{
+    "header":{
+        "details":{
+            "address":"Tehran, Shahid ghodosy",
+            "amount":"Amount Paid: ",
+            "count":"Number of visitors:",
+            "book-button":"Book Now"
+        }
+    },
+
+    "about":{
+        "publish":"Publish Date: "
+    }
+}

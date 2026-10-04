@@ -1,0 +1,29 @@
+{
+    "title": "داشبورد",
+    "sub-title-first-section": "خوش برگشتی، ",
+    "sub-title-second-section": " اینجا نگاهی سریع به فعالیت‌های اخیرت در لُغَنتِه داریم ",
+    "activity": {
+        "upcoming-visit": {
+            "title": "بازدید پیش‌رو"
+        },
+        "tickets": {
+            "title": "بلیت‌ها"
+        },
+        "collections": {
+            "title": "کالکشن ها"
+        }
+    },
+    "upcoming-ticket": {
+        "ticket-details": {
+            "reservation-code": "کد رزرو: "
+        },
+        "date-and-views": {
+            "view-ticket-button": "مشاهده بلیت"
+        }
+    },
+    "discover-museums": {
+        "title": "موزه‌های لُغَنتِه را کشف کن",
+        "sub-title": "موزه‌ها، نمایشگاه‌ها و مجموعه‌های فرهنگی ما را ماوش کن",
+        "museums-button": "دیدن موزه‌ها"
+    }
+}

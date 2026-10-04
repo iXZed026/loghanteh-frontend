@@ -1,0 +1,40 @@
+{
+    "ticket-info": {
+        "ticket": "Ticket",
+        "tickets": "tickets",
+        "location": "Tehran - Shahid Ghodousi",
+        "ticket-date": {
+            "change-button": "Change"
+        },
+        "hall": {
+            "title": "Hall",
+            "seats": "Selected seats",
+            "row": "Row"
+        },
+        "rules": {
+            "title": "Ticket Rules"
+        }
+    },
+    "payment-details": {
+        "title": "Payment Details",
+        "ticket-details": {
+            "ticket": "TIcket ",
+            "ticket-count": "person"
+        },
+        "ticket-vat": {
+            "ticket-vat": "Ticket VAT%"
+        },
+        "payable": "Amount payable",
+        "drop-down": {
+            "title": "Do you have a discount code?",
+            "discount-placeholder": "Enter your discount code",
+            "apply-button": "Apply"
+        },
+        "payment-method": {
+            "title": "Payment method",
+            "saman": "Saman Portal",
+            "another": "Another Portal"
+        },
+        "payment-button": "Payment and receipt of tickets"
+    }
+}

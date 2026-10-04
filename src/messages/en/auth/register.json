@@ -1,0 +1,11 @@
+{
+    "inputs": {
+        "name": "Full Name",
+        "phone": "Phone Number",
+        "email": "Email Address",
+        "password": "Password",
+        "rep-password": "Repeat Password"
+    },
+    "policy": "Your entry means acceptance of Loghanteh privacy policy.",
+    "submit-button": "Next Stage"
+}

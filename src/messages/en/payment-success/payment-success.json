@@ -1,0 +1,11 @@
+{
+    "payment-success": {
+        "tank-you": "Thank You!",
+        "description": "Your payment was successful and your ticket is confirmed. we look forward to welcoming you.",
+        "download-pdf-button": "Download Ticket (PDF)"
+    },
+    "summary-payment-details": {
+        "title": "Reservation Code",
+        "description": "Show this QR code at the entrance or use your reservation code"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "header": {
+        "title": "Loghanteh Cinema & Theater",
+        "description": "At Loghante Store, you can purchase cultural products, collectible models, books, and special souvenirs from the collection."
+    },
+    "day-of-the-weeks": {
+        "title": "Choose a date and buy a ticket"
+    },
+    "ticket-box": {
+        "cinema": "Cinema",
+        "theater": "Theater",
+        "image-not-available": "Image not available",
+        "capacity": "Remaining",
+        "available": "Available",
+        "sold-out": "Sold Out",
+        "in-progress": "In Progress",
+        "few-seats": "Only {count} seats left",
+        "book-button": "Book a Ticket"
+    }
+}
