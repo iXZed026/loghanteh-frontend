@@ -34,14 +34,14 @@ function ErrorPage({
                     font,
                 )}
             >
-                <div className="min-h-[80vh] w-full fcol md:gap-3 gap-15">
+            <div className="min-h-[80vh] w-full fcol md:gap-3 gap-15">
 
                     {/* Loghanteh Logo */}
                     <div className="fcc">
                         <AppImage
                             width={80}
                             height={60}
-                            src="/images/loghanteh-logo.svg"
+                            src="/images/Loghanteh-logo.svg"
                             alt="Loghanteh logo"
                         />
                     </div>

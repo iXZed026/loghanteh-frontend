@@ -11,7 +11,7 @@ function AuthHeader() {
         <AppImage
           width={85}
           height={65}
-          src={"/images/loghanteh-logo.svg"}
+          src={"/images/Loghanteh-logo.svg"}
           alt="loghanteh logo"
           priority={true}
         />

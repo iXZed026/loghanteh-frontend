@@ -22,7 +22,7 @@ function ProfileMobileHeader({
                 <AppImage
                     width={60}
                     height={40}
-                    src="/images/loghanteh-logo.svg"
+                    src="/images/Loghanteh-logo.svg"
                     alt='loghanteh logo'
                 />
             </div>

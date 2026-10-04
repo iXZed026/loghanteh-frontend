@@ -32,7 +32,7 @@ function ProfileDiscoverMuseums({
                 <AppImage
                     width={80}
                     height={60}
-                    src={"/images/loghanteh-logo.svg"}
+                    src={"/images/Loghanteh-logo.svg"}
                     alt="loghanteh logo"
                 />
             </div >

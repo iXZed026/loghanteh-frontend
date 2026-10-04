@@ -21,7 +21,7 @@ function FooterSummery({
                         width={92}
                         height={65}
                         alt='loghanteh logo'
-                        src="/images/loghanteh-logo.svg"
+                        src="/images/Loghanteh-logo.svg"
                         className='brightness-0 invert'
                     />
                 </AppLink>
