@@ -40,7 +40,7 @@ function LoghantehSectionBox({
                 <div className={cn(
                     "w-full h-113",
                     "flex items-center",
-                    "justify-end",
+                    "justify-start",
                     reverse && "justify-end"
                 )}>
                     {/* <AppImage

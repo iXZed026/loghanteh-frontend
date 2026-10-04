@@ -120,7 +120,7 @@ function CinemaAndTheaterDate({
                         grid
                         min-w-[1000px]
                         grid-cols-7
-                        sm:gap-5 gap-3
+                        gap-3
                         xl:min-w-0
                     "
                 >

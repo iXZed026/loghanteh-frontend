@@ -136,7 +136,7 @@ function MuseumsTourTickets() {
                     variants={
                         dayOfTheWeeksContainerVariant
                     }
-                    className="grid grid-cols-7 md:gap-5 gap-3 min-w-[1000px] xl:min-w-0 py-2"
+                    className="grid grid-cols-7 gap-3 min-w-[1000px] xl:min-w-0 py-2"
                 >
                     <DayOfWeekBox
                         selectedDate={selectedDate}
