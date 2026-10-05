@@ -84,7 +84,7 @@ export const navLinks: INavLink[] = [
       en: "Conference Hall Reservation",
       fa: "رزرو سالن کنفرانس",
     },
-    path: "#conference-hall-reservation",
+    path: "#conference-hall",
   },
 
   {

@@ -14,7 +14,7 @@ function CinemaAndTheaters() {
                 sectionName={t("section-name")}
                 title={t("title")}
                 description={t("description")}
-                href='/cinema-and-theaters'
+                href='/cinema-and-theater'
                 textButton={cmT("button.show-more")}
             />
         </section>

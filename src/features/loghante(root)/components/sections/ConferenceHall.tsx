@@ -14,7 +14,7 @@ function ConferenceHall() {
                 sectionName={t("section-name")}
                 title={t("title")}
                 description={t("description")}
-                href='/cinema-and-theaters'
+                href='/conference-hall'
                 textButton={cmT("button.show-more")}
             />
         </section>
