@@ -72,8 +72,7 @@ function SeatsWrapper({
                         );
 
                     if (
-                        !controller.signal
-                            .aborted
+                        !controller.signal.aborted
                     ) {
                         setBookingSeats(data);
                     }
@@ -81,8 +80,7 @@ function SeatsWrapper({
                 } catch (error) {
 
                     if (
-                        !controller.signal
-                            .aborted
+                        !controller.signal.aborted
                     ) {
                         console.error(
                             "Failed to fetch booking seats:",
@@ -93,8 +91,7 @@ function SeatsWrapper({
                 } finally {
 
                     if (
-                        !controller.signal
-                            .aborted
+                        !controller.signal.aborted
                     ) {
                         setIsLoading(false);
                     }
@@ -109,6 +106,9 @@ function SeatsWrapper({
 
     }, [sessionId]);
 
+    /*
+     * O(1) reserved-seat lookup.
+     */
     const reservedSeatIds =
         useMemo(
             () =>
@@ -127,113 +127,198 @@ function SeatsWrapper({
             [bookingSeats],
         );
 
-    const rows = Object.groupBy(
-        seats ?? [],
-        (seat) => seat.row,
-    );
-
-    const isSeatSelected = (
-        seatId: number,
-    ) => {
-
-        return selectedSeats.some(
-            (seat) =>
-                seat.id === seatId,
+    /*
+     * O(1) selected-seat lookup.
+     */
+    const selectedSeatIds =
+        useMemo(
+            () =>
+                new Set(
+                    selectedSeats.map(
+                        (seat) =>
+                            seat.id,
+                    ),
+                ),
+            [selectedSeats],
         );
-    };
 
-    const isSeatReserved = (
-        seatId: number,
-    ) => {
-
-        return reservedSeatIds.has(
-            seatId,
+    /*
+     * Keep the original cinema row structure.
+     */
+    const rows =
+        useMemo(
+            () =>
+                Object.groupBy(
+                    seats ?? [],
+                    (seat) =>
+                        seat.row,
+                ),
+            [seats],
         );
-    };
+
+    const rowEntries =
+        useMemo(
+            () =>
+                Object.entries(rows),
+            [rows],
+        );
 
     return (
-        <div className="fcol gap-4">
+        <div className="w-full min-w-0">
 
-            {Object.entries(rows).map(
-                ([row, rowSeats]) => (
+            {/*
+             * IMPORTANT:
+             *
+             * Desktop keeps the original cinema layout.
+             *
+             * Mobile gets its own horizontal scrolling
+             * container so the whole page does not overflow.
+             */}
+
+            <div
+                className="
+                    w-full
+                    overflow-x-auto
+                    overflow-y-hidden
+                    overscroll-x-contain
+                    touch-pan-x
+                    pb-3
+                    sm:overflow-visible
+                    sm:pb-0
+                "
+            >
+
+                <div
+                    className="
+                        mx-auto
+                        w-max
+                        min-w-full
+                        px-2
+                        sm:w-full
+                        sm:min-w-0
+                        sm:px-0
+                    "
+                >
+
                     <div
-                        key={row}
                         className="
                             flex
-                            items-center
-                            justify-center
-                            gap-3
+                            flex-col
+                            gap-4
                         "
                     >
 
-                        {/* Row Number */}
+                        {rowEntries.map(
+                            ([row, rowSeats]) => (
+                                <div
+                                    key={row}
+                                    className="
+                                        flex
+                                        min-w-max
+                                        items-center
+                                        justify-center
+                                        gap-3
+                                    "
+                                >
 
-                        <div
-                            className="
-                                size-8
-                                shrink-0
-                                fcc
-                                rounded-lg
-                                bg-black
-                                text-xs
-                                font-semibold
-                                text-white
-                            "
-                        >
-                            {row}
-                        </div>
+                                    {/* Row Number */}
 
-                        {/* Seats */}
+                                    <div
+                                        className="
+                                            size-8
+                                            shrink-0
+                                            fcc
+                                            rounded-lg
+                                            bg-black
+                                            text-xs
+                                            font-semibold
+                                            text-white
+                                        "
+                                    >
+                                        {row}
+                                    </div>
 
-                        <div
-                            className="
-                                flex
-                                justify-center
-                                gap-3
-                            "
-                        >
-                            {rowSeats?.map(
-                                (seat) => {
+                                    {/* Seats */}
 
-                                    const reserved =
-                                        isSeatReserved(
-                                            seat.id,
-                                        );
+                                    <div
+                                        className="
+                                            flex
+                                            items-center
+                                            justify-center
+                                            gap-3
+                                        "
+                                    >
 
-                                    return (
-                                        <SeatsBox
-                                            key={
-                                                seat.id
-                                            }
-                                            seatNum={
-                                                seat.seatNum
-                                            }
-                                            selected={
-                                                isSeatSelected(
-                                                    seat.id,
-                                                )
-                                            }
-                                            reserved={
-                                                reserved
-                                            }
-                                            disabled={
-                                                isLoading ||
-                                                reserved
-                                            }
-                                            onClick={() =>
-                                                onToggleSeat(
-                                                    seat,
-                                                )
-                                            }
-                                        />
-                                    );
-                                },
-                            )}
-                        </div>
+                                        {rowSeats?.map(
+                                            (
+                                                seat,
+                                            ) => {
+
+                                                const reserved =
+                                                    reservedSeatIds.has(
+                                                        seat.id,
+                                                    );
+
+                                                const selected =
+                                                    selectedSeatIds.has(
+                                                        seat.id,
+                                                    );
+
+                                                return (
+                                                    <SeatsBox
+                                                        key={
+                                                            seat.id
+                                                        }
+                                                        seatNum={
+                                                            seat.seatNum
+                                                        }
+                                                        selected={
+                                                            selected
+                                                        }
+                                                        reserved={
+                                                            reserved
+                                                        }
+                                                        disabled={
+                                                            isLoading ||
+                                                            reserved
+                                                        }
+                                                        onClick={() =>
+                                                            onToggleSeat(
+                                                                seat,
+                                                            )
+                                                        }
+                                                    />
+                                                );
+                                            },
+                                        )}
+
+                                    </div>
+
+                                </div>
+                            ),
+                        )}
 
                     </div>
-                ),
-            )}
+
+                </div>
+
+            </div>
+
+            {/* Mobile scroll hint */}
+
+            <div
+                className="
+                    mt-3
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    text-[10px]
+                    text-black-light-utility
+                    sm:hidden
+                "
+            >
+            </div>
 
         </div>
     );
