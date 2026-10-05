@@ -275,13 +275,13 @@ function RegisterForm({
                 </div>
 
                 {/* Sign In With Google */}
-                <div className="border-2 border-black/30 h-12.5 rounded-lg fcc gap-3 text-sm">
+                {/* <div className="border-2 border-black/30 h-12.5 rounded-lg fcc gap-3 text-sm">
                     <GrGoogle className="size-4 text-purple-500" />
 
                     <span>
                         {googleText}
                     </span>
-                </div>
+                </div> */}
 
                 {/* Register Button */}
                 <div>

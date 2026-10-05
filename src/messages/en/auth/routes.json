@@ -1,6 +1,6 @@
 {
     "routes": {
-        "register": "Sign In",
+        "register": "SignUp",
         "login": "Login"
     }
 }

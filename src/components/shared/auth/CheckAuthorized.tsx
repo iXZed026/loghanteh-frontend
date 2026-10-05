@@ -54,13 +54,55 @@ function CheckAuthorized({
             return
         }
 
+        /*
+         * Do not overwrite the original redirect path
+         * while the user is already inside authentication
+         * pages.
+         *
+         * Example:
+         *
+         * /payment
+         *   -> /login
+         *   -> /login/verify
+         *
+         * The redirect must remain /payment.
+         */
+
+        const localePrefix =
+            `/${locale}`
+
+        const normalizedPath =
+            pathname === localePrefix
+                ? "/"
+                : pathname.startsWith(
+                    `${localePrefix}/`,
+                )
+                    ? pathname.slice(
+                        localePrefix.length,
+                    )
+                    : pathname
+
+        const isAuthRoute =
+            normalizedPath === "/login" ||
+            normalizedPath.startsWith(
+                "/login/",
+            ) ||
+            normalizedPath === "/register" ||
+            normalizedPath.startsWith(
+                "/register/",
+            )
+
+        if (isAuthRoute) {
+            return
+        }
+
         const queryString =
             searchParams.toString()
 
         const currentPath =
             queryString
-                ? `${pathname}?${queryString}`
-                : pathname
+                ? `${normalizedPath}?${queryString}`
+                : normalizedPath
 
         saveToLocalStorage(
             AUTH_REDIRECT_KEY,

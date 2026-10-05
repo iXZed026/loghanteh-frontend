@@ -25,7 +25,6 @@ function EventsAndCoursesHeader() {
                         <span className=' text-crimson'>
                             {eventsAndCoursesHeaderT("title.part-two")}
                         </span>
-                        {formatMonthYear(today, locale).split(" ")[0]}
                     </h2>
                 </FadeUp>
             </div>
