@@ -1,4 +1,5 @@
 import AppImage from '@/components/ui/AppImage'
+import AppLink from '@/components/ui/AppLink'
 import { cn } from '@/lib/utils/cn'
 import React from 'react'
 import { IoMdMenu } from 'react-icons/io'
@@ -19,12 +20,16 @@ function ProfileMobileHeader({
                     className='size-12 cursor-pointer click-scale'
                     onClick={activeDashboardHandler}
                 />
+                <AppLink
+                    href="/"
+                >
                 <AppImage
                     width={60}
                     height={40}
                     src="/images/Loghanteh-logo.svg"
                     alt='loghanteh logo'
                 />
+                </AppLink>
             </div>
 
         </div>

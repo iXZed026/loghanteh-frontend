@@ -29,12 +29,17 @@ function ProfileDiscoverMuseums({
                     "fcc",
                 )
             } >
-                <AppImage
-                    width={80}
-                    height={60}
-                    src={"/images/Loghanteh-logo.svg"}
-                    alt="loghanteh logo"
-                />
+                <AppLink
+                    href="/"
+                >
+
+                    <AppImage
+                        width={80}
+                        height={60}
+                        src={"/images/Loghanteh-logo.svg"}
+                        alt="loghanteh logo"
+                    />
+                </AppLink>
             </div >
             <div
                 className={cn(
@@ -45,7 +50,7 @@ function ProfileDiscoverMuseums({
                     {dashboardPageT("discover-museums.title")}
                 </span>
                 <p className='font-light text-black-light-utility'>
-                   {dashboardPageT("discover-museums.sub-title")}
+                    {dashboardPageT("discover-museums.sub-title")}
                 </p>
             </div>
             <div

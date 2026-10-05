@@ -13,6 +13,7 @@ import { RefObject, useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { useProfile } from '@/contexts/ProfileProvider';
 import { useRouter } from 'next/navigation';
+import AppLink from '@/components/ui/AppLink'
 
 interface IProfileDashboard {
     isActive: boolean;
@@ -83,12 +84,16 @@ function ProfileDashboard({
                 <div className='fcol gap-10'>
 
                     <div className='fbc'>
-                        <AppImage
-                            width={80}
-                            height={60}
-                            src="/images/Loghanteh-logo.svg"
-                            alt='loghante logo'
-                        />
+                        <AppLink
+                            href="/"
+                        >
+                            <AppImage
+                                width={80}
+                                height={60}
+                                src="/images/Loghanteh-logo.svg"
+                                alt='loghante logo'
+                            />
+                        </AppLink>
 
                         <IoMdClose
                             className={cn(
