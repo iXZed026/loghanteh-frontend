@@ -187,7 +187,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={direction}>
       <body className={font}>
-        <Analytics>
         <NextIntlClientProvider messages={messages}>
           <ProfileProvider>
             <TicketPaymentProvider>
@@ -203,7 +202,7 @@ export default async function LocaleLayout({
             </TicketPaymentProvider>
           </ProfileProvider>
         </NextIntlClientProvider>
-        </Analytics>
+        <Analytics/>
       </body>
     </html>
   );
