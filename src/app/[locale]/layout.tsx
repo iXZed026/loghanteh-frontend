@@ -4,6 +4,8 @@ import { getMessages } from "next-intl/server";
 
 import "@/app/globals.css";
 
+import { Analytics } from '@vercel/analytics/next';
+
 import { poppins, rozname, wulkan } from "@/font";
 
 import Header from "@/features/loghante(root)/components/header/Header";
@@ -185,6 +187,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={direction}>
       <body className={font}>
+        <Analytics>
         <NextIntlClientProvider messages={messages}>
           <ProfileProvider>
             <TicketPaymentProvider>
@@ -200,6 +203,7 @@ export default async function LocaleLayout({
             </TicketPaymentProvider>
           </ProfileProvider>
         </NextIntlClientProvider>
+        </Analytics>
       </body>
     </html>
   );
