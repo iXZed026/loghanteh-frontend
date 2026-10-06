@@ -104,7 +104,7 @@ function HallContent({
                 </div>
             </div>
 
-            {/* Seat map */}
+            {/* Hall */}
 
             <div
                 className="

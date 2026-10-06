@@ -1,4 +1,12 @@
-import { cn } from "@/lib/utils/cn";
+"use client";
+
+import {
+    memo,
+} from "react";
+
+import {
+    cn,
+} from "@/lib/utils/cn";
 
 interface SeatsBoxProps {
     seatNum: number;
@@ -19,52 +27,84 @@ function SeatsBox({
     return (
         <button
             type="button"
-            onClick={onClick}
             disabled={disabled}
-            aria-pressed={
-                reserved
-                    ? false
-                    : selected
+            aria-label={`Seat ${seatNum}`}
+            aria-pressed={selected}
+            aria-disabled={
+                reserved || disabled
             }
-            aria-label={
-                reserved
-                    ? `Seat ${seatNum} is reserved`
-                    : `Seat ${seatNum}`
-            }
+            onClick={onClick}
             className={cn(
-                "size-12",
+                /*
+                 * Mobile
+                 */
+                "size-7",
+                "rounded-md",
+                "text-[8px]",
+
+                /*
+                 * Desktop
+                 * Keep the original seat size.
+                 */
+                "sm:size-9",
+                "sm:rounded-lg",
+                "sm:text-[10px]",
+
                 "shrink-0",
-                "rounded-xl",
+                "grow-0",
+
                 "fcc",
-                "border",
+
+                "font-semibold",
+
                 "transition-all",
-                "duration-200",
+                "duration-150",
 
-                reserved
-                    ? [
-                          "cursor-not-allowed",
-                          "border-gold-utility",
-                          "bg-gold-utility",
-                          "text-white",
-                          "line-through",
-                      ]
-                    : selected
-                        ? [
-                              "cursor-pointer",
-                              "border-crimson",
-                              "bg-crimson",
-                              "text-white",
-                              "scale-105",
-                              "shadow-md",
-                          ]
-                        : [
-                              "cursor-pointer",
-                              "border-[var(--black-light-color)]",
-                              "bg-white",
-                              "hover:bg-[var(--crimson-opacity-color)]",
-                              "hover:border-crimson",
-                          ],
+                "select-none",
 
+                /*
+                 * Selected
+                 */
+                selected &&
+                    !reserved &&
+                    [
+                        "bg-crimson",
+                        "text-white",
+                        "shadow-sm",
+                        "shadow-crimson/20",
+                        "ring-2",
+                        "ring-crimson/20",
+                    ],
+
+                /*
+                 * Available
+                 */
+                !selected &&
+                    !reserved &&
+                    [
+                        "border",
+                        "border-[var(--black-light-color)]",
+                        "bg-white",
+                        "text-black",
+                        "hover:bg-[var(--crimson-opacity-color)]",
+                        "click-scale",
+                        "cursor-pointer"
+                    ],
+
+                /*
+                 * Reserved
+                 */
+                reserved && [
+                    "cursor-not-allowed",
+                    "bg-gold-utility",
+                    "text-white",
+                    "line-through",
+                    "opacity-80",
+                ],
+
+                /*
+                 * Loading / disabled
+                 */
                 disabled &&
                     !reserved && [
                         "cursor-wait",
@@ -77,4 +117,4 @@ function SeatsBox({
     );
 }
 
-export default SeatsBox;
+export default memo(SeatsBox);

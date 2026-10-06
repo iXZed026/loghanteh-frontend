@@ -76,21 +76,22 @@ function SelectedSeats({
         ) ??
         [];
 
-    const totalPrice =
-        Number(
-            event?.price ?? 0,
-        ) *
-        selectedSeats.length;
-
     const groupedSeats =
         useMemo(
             () =>
                 Object.groupBy(
                     selectedSeats,
-                    (seat) => seat.row,
+                    (seat) =>
+                        seat.row,
                 ),
             [selectedSeats],
         );
+
+    const totalPrice =
+        Number(
+            event?.price ?? 0,
+        ) *
+        selectedSeats.length;
 
     const handleContinue = () => {
 
@@ -176,7 +177,7 @@ function SelectedSeats({
                 <div
                     className="
                         flex
-                        min-h-80
+                        min-h-24
                         items-center
                         justify-center
                         text-center
@@ -223,12 +224,7 @@ function SelectedSeats({
                 "
             >
 
-                <div
-                    className="
-                        min-w-0
-                        flex-1
-                    "
-                >
+                <div className="min-w-0">
 
                     <h2
                         className="
@@ -249,13 +245,10 @@ function SelectedSeats({
                             sm:text-xs
                         "
                     >
-                        {selectedSeats.length}{" "}
-                        seats
-                        {" × "}
+                        {selectedSeats.length} seats ×{" "}
                         {Number(
                             event?.price ?? 0,
-                        ).toLocaleString()}
-                        {" "}
+                        ).toLocaleString()}{" "}
                         Toman
                     </p>
 
@@ -263,11 +256,9 @@ function SelectedSeats({
 
                 <div
                     className="
-                        flex
+                        fcc
                         size-9
                         shrink-0
-                        items-center
-                        justify-center
                         rounded-xl
                         bg-crimson
                         text-sm
@@ -281,24 +272,17 @@ function SelectedSeats({
 
             </div>
 
-            {/* Selected seats */}
+            {/* Seats */}
 
             <div
                 className="
                     mt-4
-                    max-h-[55vh]
-                    overflow-y-auto
-                    overscroll-contain
-                    pr-1
                     sm:mt-5
-                    sm:max-h-200
                 "
             >
-
                 <div
                     className="
-                        flex
-                        flex-col
+                        fcol
                         gap-3
                     "
                 >
@@ -330,8 +314,7 @@ function SelectedSeats({
                                         sm:text-xs
                                     "
                                 >
-                                    {T("row")}{" "}
-                                    {row}
+                                    {T("row")} {row}
                                 </span>
 
                                 <div
@@ -351,11 +334,9 @@ function SelectedSeats({
                                                     seat.id
                                                 }
                                                 className="
-                                                    flex
+                                                    fcc
                                                     h-8
                                                     min-w-8
-                                                    items-center
-                                                    justify-center
                                                     rounded-lg
                                                     bg-crimson
                                                     px-2
@@ -380,17 +361,11 @@ function SelectedSeats({
                     )}
 
                 </div>
-
             </div>
 
             {/* Payment */}
 
-            <div
-                className="
-                    mt-5
-                    sm:mt-6
-                "
-            >
+            <div className="mt-5 sm:mt-6">
 
                 <Button
                     type="button"
@@ -398,34 +373,26 @@ function SelectedSeats({
                         handleContinue
                     }
                     className="
-                        sticky
-                        bottom-3
-                        z-20
                         flex
                         w-full
                         items-center
                         justify-between
                         gap-4
-                        rounded-xl
                         bg-crimson
                         px-4
                         py-3
                         text-xs
                         font-semibold
-                        shadow-lg
                         transition-colors
                         hover:bg-[var(--crimson-opacity-color)]
                         hover:text-crimson
-                        sm:static
-                        sm:rounded-xl
                         sm:px-5
                         sm:py-3.5
                         sm:text-sm
-                        sm:shadow-none
                     "
                 >
 
-                    <span className="shrink-0">
+                    <span>
                         {T("payment-button")}
                     </span>
 
@@ -441,22 +408,12 @@ function SelectedSeats({
                     ) : (
                         <span
                             className="
-                                flex
-                                shrink-0
-                                flex-col
+                                fcol
                                 items-end
-                                gap-0.5
-                                text-right
+                                gap-y-0.5
                             "
                         >
-
-                            <span
-                                className="
-                                    text-sm
-                                    font-bold
-                                    sm:text-base
-                                "
-                            >
+                            <span className="font-bold">
                                 {totalPrice.toLocaleString()}
                             </span>
 
@@ -464,12 +421,10 @@ function SelectedSeats({
                                 className="
                                     text-[10px]
                                     opacity-80
-                                    sm:text-xs
                                 "
                             >
                                 Toman
                             </span>
-
                         </span>
                     )}
 

@@ -143,7 +143,7 @@ function SeatsWrapper({
         );
 
     /*
-     * Keep the original cinema row structure.
+     * Keep rows memoized.
      */
     const rows =
         useMemo(
@@ -164,160 +164,160 @@ function SeatsWrapper({
         );
 
     return (
-        <div className="w-full min-w-0">
-
-            {/*
-             * IMPORTANT:
-             *
-             * Desktop keeps the original cinema layout.
-             *
-             * Mobile gets its own horizontal scrolling
-             * container so the whole page does not overflow.
-             */}
+        <div
+            className="
+                w-full
+                min-w-0
+            "
+        >
 
             <div
                 className="
+                    flex
                     w-full
-                    overflow-x-auto
-                    overflow-y-hidden
-                    overscroll-x-contain
-                    touch-pan-x
-                    pb-3
-                    sm:overflow-visible
-                    sm:pb-0
+                    flex-col
+                    gap-4
+                    rounded-2xl
+                    border
+                    border-black-opacity
+                    bg-white
+                    px-2
+                    py-6
+                    sm:gap-5
+                    sm:px-4
+                    sm:py-8
                 "
             >
+
+                {/* Cinema screen */}
 
                 <div
                     className="
                         mx-auto
-                        w-max
-                        min-w-full
-                        px-2
-                        sm:w-full
-                        sm:min-w-0
-                        sm:px-0
+                        w-[65%]
+                        min-w-36
+                        max-w-[500px]
+                        text-center
                     "
                 >
 
-                    <div
-                        className="
-                            flex
-                            flex-col
-                            gap-4
-                        "
-                    >
+                </div>
 
-                        {rowEntries.map(
-                            ([row, rowSeats]) => (
+                {/* Seat rows */}
+
+                <div
+                    className="
+                        mx-auto
+                        flex
+                        w-full
+                        max-w-full
+                        flex-col
+                        gap-3
+                        sm:gap-4
+                    "
+                >
+
+                    {rowEntries.map(
+                        ([row, rowSeats]) => (
+                            <div
+                                key={row}
+                                className="
+                                    flex
+                                    w-full
+                                    min-w-0
+                                    items-center
+                                    justify-center
+                                    gap-1
+                                    sm:gap-3
+                                "
+                            >
+
+                                {/* Row number */}
+
                                 <div
-                                    key={row}
+                                    className="
+                                        size-6
+                                        shrink-0
+                                        fcc
+                                        rounded-md
+                                        bg-black
+                                        text-[9px]
+                                        font-semibold
+                                        text-white
+                                        sm:size-8
+                                        sm:rounded-lg
+                                        sm:text-xs
+                                    "
+                                >
+                                    {row}
+                                </div>
+
+                                {/* Seats */}
+
+                                <div
                                     className="
                                         flex
-                                        min-w-max
+                                        min-w-0
+                                        flex-1
                                         items-center
                                         justify-center
-                                        gap-3
+                                        gap-1
+                                        sm:flex-none
+                                        sm:gap-3
                                     "
                                 >
 
-                                    {/* Row Number */}
+                                    {rowSeats?.map(
+                                        (
+                                            seat,
+                                        ) => {
 
-                                    <div
-                                        className="
-                                            size-8
-                                            shrink-0
-                                            fcc
-                                            rounded-lg
-                                            bg-black
-                                            text-xs
-                                            font-semibold
-                                            text-white
-                                        "
-                                    >
-                                        {row}
-                                    </div>
-
-                                    {/* Seats */}
-
-                                    <div
-                                        className="
-                                            flex
-                                            items-center
-                                            justify-center
-                                            gap-3
-                                        "
-                                    >
-
-                                        {rowSeats?.map(
-                                            (
-                                                seat,
-                                            ) => {
-
-                                                const reserved =
-                                                    reservedSeatIds.has(
-                                                        seat.id,
-                                                    );
-
-                                                const selected =
-                                                    selectedSeatIds.has(
-                                                        seat.id,
-                                                    );
-
-                                                return (
-                                                    <SeatsBox
-                                                        key={
-                                                            seat.id
-                                                        }
-                                                        seatNum={
-                                                            seat.seatNum
-                                                        }
-                                                        selected={
-                                                            selected
-                                                        }
-                                                        reserved={
-                                                            reserved
-                                                        }
-                                                        disabled={
-                                                            isLoading ||
-                                                            reserved
-                                                        }
-                                                        onClick={() =>
-                                                            onToggleSeat(
-                                                                seat,
-                                                            )
-                                                        }
-                                                    />
+                                            const reserved =
+                                                reservedSeatIds.has(
+                                                    seat.id,
                                                 );
-                                            },
-                                        )}
 
-                                    </div>
+                                            const selected =
+                                                selectedSeatIds.has(
+                                                    seat.id,
+                                                );
+
+                                            return (
+                                                <SeatsBox
+                                                    key={
+                                                        seat.id
+                                                    }
+                                                    seatNum={
+                                                        seat.seatNum
+                                                    }
+                                                    selected={
+                                                        selected
+                                                    }
+                                                    reserved={
+                                                        reserved
+                                                    }
+                                                    disabled={
+                                                        isLoading ||
+                                                        reserved
+                                                    }
+                                                    onClick={() =>
+                                                        onToggleSeat(
+                                                            seat,
+                                                        )
+                                                    }
+                                                />
+                                            );
+                                        },
+                                    )}
 
                                 </div>
-                            ),
-                        )}
 
-                    </div>
+                            </div>
+                        ),
+                    )}
 
                 </div>
 
-            </div>
-
-            {/* Mobile scroll hint */}
-
-            <div
-                className="
-                    mt-3
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    text-[10px]
-                    text-black-light-utility
-                    sm:hidden
-                "
-            >
             </div>
 
         </div>
