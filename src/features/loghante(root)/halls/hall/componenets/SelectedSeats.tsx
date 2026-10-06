@@ -176,7 +176,7 @@ function SelectedSeats({
                 <div
                     className="
                         flex
-                        min-h-24
+                        min-h-80
                         items-center
                         justify-center
                         text-center
@@ -286,12 +286,12 @@ function SelectedSeats({
             <div
                 className="
                     mt-4
-                    max-h-[35vh]
+                    max-h-[55vh]
                     overflow-y-auto
                     overscroll-contain
                     pr-1
                     sm:mt-5
-                    sm:max-h-none
+                    sm:max-h-200
                 "
             >
 

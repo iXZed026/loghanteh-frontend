@@ -41,6 +41,7 @@ function HallTicketDetails() {
     const router =
         useRouter()
 
+
     const locale = useLocale()
 
 
@@ -73,7 +74,14 @@ function HallTicketDetails() {
         )
 
     function changeButtonHandler() {
-        router.back()
+        if (
+            hallData?.eventData.theaterDetails ||
+            hallData?.eventData.cinemaDetails
+        ) {
+            router.push(`/${locale}/cinema-and-theater`)
+        }else {
+            router.push(`/${locale}/events-and-courses`)
+        }
     }
 
     return (
