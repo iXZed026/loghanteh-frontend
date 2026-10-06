@@ -1,39 +1,64 @@
-import AppImage from '@/components/ui/AppImage'
-import AppLink from '@/components/ui/AppLink'
-import { cn } from '@/lib/utils/cn'
-import React from 'react'
-import { IoMdMenu } from 'react-icons/io'
+"use client";
 
-function ProfileMobileHeader({
-    activeDashboardHandler
+import AppImage from "@/components/ui/AppImage";
+import AppLink from "@/components/ui/AppLink";
+import { cn } from "@/lib/utils/cn";
+import { IoMdMenu } from "react-icons/io";
 
-}: { activeDashboardHandler: () => void }) {
-    return (
-        <div className={cn(
-            "w-full ",
-            "px-8",
-            "md:hidden block",
-            "border-b-2 border-[var(--crimson-color)]"
-        )}>
-            <div className="fbc h-20">
-                <IoMdMenu
-                    className='size-12 cursor-pointer click-scale'
-                    onClick={activeDashboardHandler}
-                />
-                <AppLink
-                    href="/"
-                >
-                <AppImage
-                    width={60}
-                    height={40}
-                    src="/images/Loghanteh-logo.svg"
-                    alt='loghanteh logo'
-                />
-                </AppLink>
-            </div>
-
-        </div>
-    )
+interface ProfileMobileHeaderProps {
+    activeDashboardHandler: () => void;
 }
 
-export default ProfileMobileHeader
+function ProfileMobileHeader({
+    activeDashboardHandler,
+}: ProfileMobileHeaderProps) {
+
+    return (
+        <header
+            className={cn(
+                "block",
+                "w-full",
+                "border-b-2",
+                "border-[var(--crimson-color)]",
+                "px-5",
+                "xl:hidden",
+                "md:px-8",
+            )}
+        >
+            <div className="fbc h-20">
+
+                <button
+                    type="button"
+                    aria-label="Open dashboard menu"
+                    onClick={
+                        activeDashboardHandler
+                    }
+                    className="
+                        fcc
+                        size-11
+                        cursor-pointer
+                        rounded-xl
+                        transition-all
+                        duration-150
+                        hover:bg-crimson/10
+                        active:scale-95
+                    "
+                >
+                    <IoMdMenu className="size-11" />
+                </button>
+
+                <AppLink href="/">
+                    <AppImage
+                        width={60}
+                        height={40}
+                        src="/images/Loghanteh-logo.svg"
+                        alt="Loghanteh logo"
+                    />
+                </AppLink>
+
+            </div>
+        </header>
+    );
+}
+
+export default ProfileMobileHeader;

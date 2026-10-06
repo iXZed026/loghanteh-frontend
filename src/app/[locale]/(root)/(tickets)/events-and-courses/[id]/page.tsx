@@ -44,7 +44,7 @@ async function EventsAndCoursesDetailsPage({
     ) {
         return (
             <Container>
-                <div className="mt-20 py-18 text-center">
+                <div className="py-38 text-center">
                     Invalid event type.
                 </div>
             </Container>
@@ -67,7 +67,7 @@ async function EventsAndCoursesDetailsPage({
     ) {
         return (
             <Container>
-                <div className="mt-20 py-18 text-center">
+                <div className="py-38 text-center">
                     Failed to load session details.
                 </div>
             </Container>
@@ -78,7 +78,7 @@ async function EventsAndCoursesDetailsPage({
 
     return (
         <Container>
-            <div className="mt-20 xl:px-25 sm:px-10 py-18 fcol gap-y-10">
+            <div className="xl:px-25 sm:px-10 py-38 fcol gap-y-10">
 
                 <EventsAndCoursesDetailsHeader
                     event={event}

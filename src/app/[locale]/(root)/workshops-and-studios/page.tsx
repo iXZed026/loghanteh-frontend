@@ -22,7 +22,7 @@ function WorkshopsAndStudios() {
         <Container>
             <div
                 className={cn(
-                    "mt-20 py-20",
+                    "py-40",
                     "min-h-screen",
                     "lg:px-30",
                 )}

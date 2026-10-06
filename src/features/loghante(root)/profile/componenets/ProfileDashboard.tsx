@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import AppImage from '@/components/ui/AppImage'
-import Button from '@/components/ui/Button'
-import Modal, { IModal } from '@/components/shared/modal/Modal'
-import { cn } from '@/lib/utils/cn'
-import ProfileDashboardLinks from './ProfileDashboardLinks';
+import AppImage from "@/components/ui/AppImage";
+import AppLink from "@/components/ui/AppLink";
+import Button from "@/components/ui/Button";
+import { cn } from "@/lib/utils/cn";
+import ProfileDashboardLinks from "./ProfileDashboardLinks";
 import { IoIosLogOut } from "react-icons/io";
-import { useLocale, useTranslations } from 'next-intl';
-import { openSlideMenu, openSlideMenuFa } from '@/lib/animations/variants';
-import { motion } from "framer-motion";
-import { RefObject, useState } from 'react';
 import { IoMdClose } from "react-icons/io";
-import { useProfile } from '@/contexts/ProfileProvider';
-import { useRouter } from 'next/navigation';
-import AppLink from '@/components/ui/AppLink'
+import { useLocale, useTranslations } from "next-intl";
+import {
+    openSlideMenu,
+    openSlideMenuFa,
+} from "@/lib/animations/variants";
+import { motion } from "framer-motion";
+import { RefObject } from "react";
+import { useProfile } from "@/contexts/ProfileProvider";
 
 interface IProfileDashboard {
     isActive: boolean;
     divElem?: RefObject<HTMLDivElement | null>;
-    UnActiveDashboardHandler?: () => void
+    UnActiveDashboardHandler?: () => void;
 }
-
 
 function ProfileDashboard({
     isActive,
@@ -28,120 +28,153 @@ function ProfileDashboard({
     UnActiveDashboardHandler,
 }: IProfileDashboard) {
 
-    const dashboardLinksT = useTranslations("profileDashboard")
-    const locale = useLocale()
+    const dashboardLinksT =
+        useTranslations("profileDashboard");
 
-    const router = useRouter()
+    const locale = useLocale();
 
     const {
         profile,
         logout,
-    } = useProfile()
+    } = useProfile();
 
-
-
-    async function logoutHandler() {
+    const logoutHandler = async () => {
         try {
-            await logout()
-
-        } catch (err) {
-            console.log(err)
+            await logout();
+        } catch (error) {
+            console.error(error);
         }
-    }
-
+    };
 
     return (
-
         <motion.div
             variants={
-                locale !== "fa" ?
-                    openSlideMenu :
-                    openSlideMenuFa
+                locale !== "fa"
+                    ? openSlideMenu
+                    : openSlideMenuFa
             }
             initial="hidden"
             animate="visible"
             exit="exit"
+            ref={divElem}
             className={cn(
                 "w-90",
-                "bg-white-utility",
                 "min-h-screen",
-                " border-black/30",
-                locale === "fa" ? "border-l-1" : "border-r-1",
+                "bg-white-utility",
+                "border-black/30",
+                locale === "fa"
+                    ? "border-l"
+                    : "border-r",
+
+                /*
+                 * Mobile / Tablet drawer.
+                 */
                 isActive
                     ? locale === "fa"
-                        ? "fixed top-0 right-0"
-                        : "fixed top-0 left-0"
-                    : "md:block hidden",
+                        ? "fixed top-0 right-0 z-50"
+                        : "fixed top-0 left-0 z-50"
+                    : "xl:block hidden",
             )}
-            ref={divElem}
         >
-            <div className={cn(
-                "p-8.5",
-                "fcol justify-between",
-                "min-h-screen",
-            )}>
+            <div
+                className={cn(
+                    "fcol",
+                    "min-h-screen",
+                    "justify-between",
+                    "p-5",
+                    "md:p-8.5",
+                )}
+            >
 
-                <div className='fcol gap-10'>
+                <div className="fcol gap-10">
 
-                    <div className='fbc'>
-                        <AppLink
-                            href="/"
-                        >
+                    {/* Header */}
+                    <div className="fbc">
+
+                        <AppLink href="/">
                             <AppImage
                                 width={80}
                                 height={60}
                                 src="/images/Loghanteh-logo.svg"
-                                alt='loghante logo'
+                                alt="Loghanteh logo"
                             />
                         </AppLink>
 
-                        <IoMdClose
+                        <button
+                            type="button"
+                            aria-label="Close menu"
+                            onClick={
+                                UnActiveDashboardHandler
+                            }
                             className={cn(
-                                "size-6",
-                                "transition-all",
-                                "hover:opacity-65",
-                                "click-scale",
+                                "flex items-center justify-center",
+                                "size-9",
                                 "cursor-pointer",
-                                "md:hidden"
+                                "rounded-lg",
+                                "transition-opacity",
+                                "duration-200",
+                                "hover:opacity-65",
+                                "active:scale-95",
+                                "xl:hidden",
                             )}
-                            onClick={UnActiveDashboardHandler}
-                        />
+                        >
+                            <IoMdClose className="size-6" />
+                        </button>
+
                     </div>
 
-                    <span className='font-semibold text-lg text-crimson'>
-                        {profile?.full_name.toUpperCase()}
+                    {/* User Name */}
+                    <span
+                        className={cn(
+                            "truncate",
+                            "text-lg",
+                            "font-semibold",
+                            "text-crimson",
+                        )}
+                    >
+                        {profile?.full_name?.toUpperCase()}
                     </span>
 
+                    {/* Dashboard Links */}
                     <ProfileDashboardLinks
-                        UnActiveDashboardHandler={UnActiveDashboardHandler}
+                        UnActiveDashboardHandler={
+                            UnActiveDashboardHandler
+                        }
                     />
 
                 </div>
 
-                <div>
-                    <div>
-                        <Button
-                            className={cn(
-                                "w-full",
-                                "px-5",
-                                "text-black-utility font-semibold",
-                                "flex items-center gap-3",
-                                "transition-all duration-300",
-                                "active:pl-1",
-                                "hover:pl-7",
-                            )}
-                            onClick={logoutHandler}
-                        >
-                            <IoIosLogOut className='size-6 text-crimson' />
-                            {dashboardLinksT("logout")}
-                        </Button>
-                    </div>
-                </div>
+                {/* Logout */}
+                <Button
+                    type="button"
+                    className={cn(
+                        "flex",
+                        "w-full",
+                        "items-center",
+                        "gap-3",
+                        "px-5",
+                        "font-semibold",
+                        "text-black-utility",
+                        "transition-all",
+                        "duration-300",
+                        "active:pl-1",
+                        "hover:pl-7",
+                    )}
+                    onClick={logoutHandler}
+                >
+                    <IoIosLogOut
+                        className="
+                            size-6
+                            text-crimson
+                        "
+                    />
+
+                    {dashboardLinksT("logout")}
+                </Button>
 
             </div>
         </motion.div>
-    )
+    );
 }
 
-export default ProfileDashboard
-
+export default ProfileDashboard;

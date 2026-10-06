@@ -2,7 +2,7 @@ import EventsAndCoursesContent from "@/features/loghante(root)/tickets/events-an
 
 function EventsAndCoursesPage() {
     return (
-        <div className="py-18 mt-20">
+        <div className="py-40">
             <EventsAndCoursesContent />
         </div>
     )

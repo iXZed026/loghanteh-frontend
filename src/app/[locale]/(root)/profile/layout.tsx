@@ -1,78 +1,99 @@
-"use client"
-import AnimatePresenceWrapper from '@/components/animations/AnimatePresenceWrapper';
-import CheckAuthorized from '@/components/shared/auth/CheckAuthorized';
-import AppImage from '@/components/ui/AppImage'
-import ProfileDashboard from '@/features/loghante(root)/profile/componenets/ProfileDashboard';
-import ProfileMobileHeader from '@/features/loghante(root)/profile/componenets/ProfileMobileHeader';
-import useActive from '@/hooks/useActive';
-import useClickOutside from '@/hooks/useClickOutside';
-import { cn } from '@/lib/utils/cn'
-import { Children } from '@/types/children'
-import { useLocale } from 'next-intl';
-import { useRef } from 'react';
+"use client";
+
+import AnimatePresenceWrapper from "@/components/animations/AnimatePresenceWrapper";
+import CheckAuthorized from "@/components/shared/auth/CheckAuthorized";
+import ProfileDashboard from "@/features/loghante(root)/profile/componenets/ProfileDashboard";
+import ProfileMobileHeader from "@/features/loghante(root)/profile/componenets/ProfileMobileHeader";
+import useActive from "@/hooks/useActive";
+import useClickOutside from "@/hooks/useClickOutside";
+import { Children } from "@/types/children";
+import { useRef } from "react";
 
 function ProfileLayout({
-    children
+    children,
 }: {
-    children: Children
+    children: Children;
 }) {
 
     const [
         activeDashboard,
         activeDashboardHandler,
         UnActiveDashboardHandler,
-        ,
-
     ] = useActive(false);
 
     const divElem =
-        useRef<HTMLDivElement | null>(null)
+        useRef<HTMLDivElement | null>(null);
 
     useClickOutside(
         divElem,
         UnActiveDashboardHandler,
-    )
+    );
 
     return (
         <CheckAuthorized>
-            <div className='flex'>
-                {/* Profile Dashbord */}
-                <div className='xl:block hidden'>
-                    <ProfileDashboard isActive={activeDashboard} />
+            <div className="flex">
+
+                {/* Desktop Dashboard */}
+                <div className="hidden xl:block">
+                    <ProfileDashboard
+                        isActive={false}
+                    />
                 </div>
-                <div className='md:hidden block'>
-                    {/* BLACK BACKGROUND */}
-                    <AnimatePresenceWrapper isActive={activeDashboard}>
+
+                {/* Mobile / Tablet Dashboard */}
+                <div className="block xl:hidden">
+                    <AnimatePresenceWrapper
+                        isActive={activeDashboard}
+                    >
                         <div
-                            className={cn(
-                                "w-full h-[100vh]",
-                                "bg-black/70",
-                                "text-black-utility md:text-md text-sm",
-                                "fixed top-0",
-                                "z-40",
-                            )}
+                            className="
+                                fixed
+                                inset-0
+                                z-40
+                                h-screen
+                                w-full
+                                bg-black/70
+                            "
                         >
                             <ProfileDashboard
-                                isActive={activeDashboard}
+                                isActive={
+                                    activeDashboard
+                                }
                                 divElem={divElem}
-                                UnActiveDashboardHandler={UnActiveDashboardHandler}
+                                UnActiveDashboardHandler={
+                                    UnActiveDashboardHandler
+                                }
                             />
                         </div>
                     </AnimatePresenceWrapper>
                 </div>
-                <div className='w-full'>
-                    {/* Mobile Header */}
+
+                {/* Content */}
+                <div className="w-full min-w-0">
+
+                    {/* Mobile / Tablet Header */}
                     <ProfileMobileHeader
-                        activeDashboardHandler={activeDashboardHandler}
+                        activeDashboardHandler={
+                            activeDashboardHandler
+                        }
                     />
-                    <div className="md:p-8 p-5 md:overflow-y-scroll md:h-screen">
-                        {/* Pages */}
+
+                    <div
+                        className="
+                            p-5
+                            md:h-screen
+                            md:overflow-y-auto
+                            md:p-8
+                        "
+                    >
                         {children}
                     </div>
+
                 </div>
+
             </div>
         </CheckAuthorized>
-    )
+    );
 }
 
-export default ProfileLayout
+export default ProfileLayout;
