@@ -38,7 +38,7 @@ function SeatsBox({
                 /*
                  * Mobile
                  */
-                "size-7",
+                "size-5",
                 "rounded-md",
                 "text-[8px]",
 

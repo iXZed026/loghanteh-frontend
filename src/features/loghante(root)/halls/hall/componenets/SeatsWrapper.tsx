@@ -178,7 +178,7 @@ function SeatsWrapper({
                     flex-col
                     gap-4
                     rounded-2xl
-                    border
+                    sm:border
                     border-black-opacity
                     bg-white
                     px-2
@@ -189,19 +189,6 @@ function SeatsWrapper({
                 "
             >
 
-                {/* Cinema screen */}
-
-                <div
-                    className="
-                        mx-auto
-                        w-[65%]
-                        min-w-36
-                        max-w-[500px]
-                        text-center
-                    "
-                >
-
-                </div>
 
                 {/* Seat rows */}
 
@@ -236,9 +223,11 @@ function SeatsWrapper({
 
                                 <div
                                     className="
-                                        size-6
+                                        hidden
+                                        sm:fcc
+                                        size-4
                                         shrink-0
-                                        fcc
+                                        
                                         rounded-md
                                         bg-black
                                         text-[9px]
