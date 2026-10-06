@@ -72,7 +72,7 @@ function Header() {
             {/* Hamburger */}
             <IoIosMenu
               className={cn(
-                "sm:size-11 size-15",
+                "sm:size-11 size-13",
                 "cursor-pointer",
                 "click-scale",
                 "transition-all",
@@ -170,7 +170,7 @@ function Header() {
                 className={cn(
                   "w-22 md:w-25",
                   "fcc gap-2",
-                  "py-2 md:py-3",
+                  "py-2.5 md:py-3",
                   "md:font-semibold",
                   "bg-crimson",
                   isScrolled

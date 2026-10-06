@@ -7,8 +7,22 @@
         "title": "Choose a date and buy a ticket"
     },
     "ticket-box": {
-        "capacity":"Remaining capacity:",
-        "ticket-count":"Number of tickets",
-        "book-button": "Book a Ticket"
+        "capacity": "Remaining capacity",
+        "ticket-count": "Number of tickets",
+        "selected-tickets": "{count} ticket(s) selected",
+        "duration": "Duration",
+        "minutes": "minutes",
+        "start-time": "Start time",
+        "book-button": "Book a Ticket",
+        "capacity-completed": "This session is fully booked.",
+        "increase": "Increase ticket quantity",
+        "decrease": "Decrease ticket quantity",
+        "in-progress-description": "This session is currently in progress.",
+        "ended-description": "This session has already ended.",
+        "status": {
+            "upcoming": "Available",
+            "in-progress": "In Progress",
+            "ended": "Ended"
+        }
     }
 }

@@ -7,8 +7,22 @@
     "title": "تاریخ را انتخاب کنید و بلیت بخرید"
   },
   "ticket-box": {
-    "capacity": "ظرفیت باقی‌مانده:",
+    "capacity": "ظرفیت باقی‌مانده",
     "ticket-count": "تعداد بلیت",
-    "book-button": "خرید بلیت"
+    "selected-tickets": "{count} بلیت انتخاب شده",
+    "duration": "مدت زمان",
+    "minutes": "دقیقه",
+    "start-time": "زمان شروع",
+    "book-button": "خرید بلیت",
+    "capacity-completed": "ظرفیت این سانس تکمیل شده است.",
+    "increase": "افزایش تعداد بلیت",
+    "decrease": "کاهش تعداد بلیت",
+    "in-progress-description": "این سانس در حال برگزاری است.",
+    "ended-description": "این سانس به پایان رسیده است.",
+    "status": {
+      "upcoming": "قابل رزرو",
+      "in-progress": "در حال برگزاری",
+      "ended": "پایان یافته"
+    }
   }
 }
