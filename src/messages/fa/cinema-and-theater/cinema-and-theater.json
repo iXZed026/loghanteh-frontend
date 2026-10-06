@@ -14,7 +14,12 @@
         "available": "ظرفیت موجود",
         "sold-out": "ظرفیت تکمیل",
         "in-progress": "در حال برگزاری",
+        "ended": "این سانس به پایان رسیده است",
         "few-seats": "فقط {count} صندلی باقی مانده",
-        "book-button": "خرید بلیت"
+        "book-button": "خرید بلیت",
+        "duration": "مدت زمان",
+        "minutes": "دقیقه",
+        "currency": "تومان",
+        "free": "رایگان"
     }
 }

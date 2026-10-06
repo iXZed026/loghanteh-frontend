@@ -14,7 +14,12 @@
         "available": "Available",
         "sold-out": "Sold Out",
         "in-progress": "In Progress",
+        "ended": "This session has ended",
         "few-seats": "Only {count} seats left",
-        "book-button": "Book a Ticket"
+        "book-button": "Book a Ticket",
+        "duration": "Duration",
+        "minutes": "min",
+        "currency": "Toman",
+        "free": "Free"
     }
 }

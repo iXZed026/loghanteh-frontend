@@ -24,7 +24,6 @@ import {
 } from "react-icons/md";
 
 import AppImage from "@/components/ui/AppImage";
-
 import Button from "@/components/ui/Button";
 
 import {
@@ -38,7 +37,6 @@ import {
 import type {
     CinemaAndTheaterSession,
 } from "@/lib/api/ticket/cinema-and-theater";
-import { saveToLocalStorage } from "@/lib/utils/localStorage";
 
 interface CinemaAndTheaterTicketBoxProps {
     event: CinemaAndTheaterSession;
@@ -60,7 +58,7 @@ function CinemaAndTheaterTicketBox({
 
     const ticketBoxT =
         useTranslations(
-            "cinemaAndTheater.ticket-box"
+            "cinemaAndTheater.ticket-box",
         );
 
     const [
@@ -72,7 +70,7 @@ function CinemaAndTheaterTicketBox({
 
         const updateTime = () => {
             setCurrentTime(
-                new Date()
+                new Date(),
             );
         };
 
@@ -81,7 +79,7 @@ function CinemaAndTheaterTicketBox({
         const interval =
             setInterval(
                 updateTime,
-                60_000
+                60_000,
             );
 
         return () =>
@@ -91,7 +89,7 @@ function CinemaAndTheaterTicketBox({
 
     const isCinema =
         Boolean(
-            event.cinemaDetails
+            event.cinemaDetails,
         );
 
     const imageURL =
@@ -99,11 +97,53 @@ function CinemaAndTheaterTicketBox({
         "/images/loghanteh-cafe.jpg";
 
     /*
-     * Start date & time
+     * Session start and end time.
      */
 
     const startAt =
         new Date(event.startAt);
+
+    const endAt =
+        new Date(
+            startAt.getTime() +
+            event.duration * 60 * 1000,
+        );
+
+    /*
+     * Session status.
+     */
+
+    const isInProgress =
+        Boolean(
+            currentTime &&
+            currentTime >= startAt &&
+            currentTime < endAt,
+        );
+
+    const isFinished =
+        Boolean(
+            currentTime &&
+            currentTime >= endAt,
+        );
+
+    const isUnavailable =
+        isInProgress ||
+        isFinished;
+
+    /*
+     * Button content.
+     */
+
+    const buttonContent =
+        isInProgress
+            ? ticketBoxT("in-progress")
+            : isFinished
+                ? ticketBoxT("ended")
+                : ticketBoxT("book-button");
+
+    /*
+     * Start date & time.
+     */
 
     const formattedTime =
         startAt.toLocaleTimeString(
@@ -114,52 +154,18 @@ function CinemaAndTheaterTicketBox({
                 hour: "2-digit",
                 minute: "2-digit",
                 hour12: locale !== "fa",
-            }
+            },
         );
 
     /*
-     * Event status
-     */
-
-    const isInProgress =
-        (() => {
-
-            if (!currentTime) {
-                return false;
-            }
-
-            const endAt =
-                new Date(
-                    startAt.getTime() +
-                    event.duration *
-                    60 *
-                    1000
-                );
-
-            return (
-                currentTime >= startAt &&
-                currentTime < endAt
-            );
-
-        })();
-
-    const isUnavailable =
-        isInProgress;
-
-    /*
-     * Button content
-     */
-
-    const buttonContent =
-        isInProgress
-            ? ticketBoxT("in-progress")
-            : ticketBoxT("book-button");
-
-    /*
-     * Booking
+     * Booking.
      */
 
     function bookingHandler() {
+
+        if (isUnavailable) {
+            return;
+        }
 
         setHallData({
             eventData: {
@@ -263,6 +269,9 @@ function CinemaAndTheaterTicketBox({
 
                 isInProgress &&
                 "border-crimson/40",
+
+                isFinished &&
+                "opacity-75",
             )}
         >
 
@@ -304,6 +313,9 @@ function CinemaAndTheaterTicketBox({
 
                         isInProgress &&
                         "from-crimson/80",
+
+                        isFinished &&
+                        "from-black/90",
                     )}
                 />
 
@@ -322,16 +334,11 @@ function CinemaAndTheaterTicketBox({
                         "text-xs",
                         "font-bold",
                         "backdrop-blur-md",
+                        "text-white-utility",
 
                         isCinema
-                            ? [
-                                "bg-crimson/90",
-                                "text-white",
-                            ]
-                            : [
-                                "bg-gold-utility/90",
-                                "text-black",
-                            ],
+                            ? "bg-crimson/90"
+                            : "bg-gold-utility/90",
                     )}
                 >
                     {isCinema
@@ -368,9 +375,9 @@ function CinemaAndTheaterTicketBox({
                     </span>
                 </div>
 
-                {/* In Progress */}
+                {/* Session Status */}
 
-                {isInProgress && (
+                {(isInProgress || isFinished) && (
                     <div
                         className="
                             absolute
@@ -391,19 +398,25 @@ function CinemaAndTheaterTicketBox({
                             backdrop-blur-md
                         "
                     >
-                        <span
-                            className="
-                                size-2
-                                animate-pulse
-                                rounded-full
-                                bg-white
-                            "
-                        />
+                        {isInProgress && (
+                            <span
+                                className="
+                                    size-2
+                                    animate-pulse
+                                    rounded-full
+                                    bg-white
+                                "
+                            />
+                        )}
 
                         <span>
-                            {ticketBoxT(
-                                "in-progress"
-                            )}
+                            {isInProgress
+                                ? ticketBoxT(
+                                    "in-progress",
+                                )
+                                : ticketBoxT(
+                                    "ended",
+                                )}
                         </span>
                     </div>
                 )}
@@ -415,7 +428,7 @@ function CinemaAndTheaterTicketBox({
                         "absolute",
                         "left-5",
                         "right-5",
-                        isInProgress
+                        isInProgress || isFinished
                             ? "bottom-14"
                             : "bottom-5",
                     )}
@@ -443,8 +456,7 @@ function CinemaAndTheaterTicketBox({
                                 "
                             >
                                 {
-                                    event
-                                        .cinemaDetails
+                                    event.cinemaDetails
                                         .genre
                                 }
                             </span>
@@ -495,11 +507,14 @@ function CinemaAndTheaterTicketBox({
                                 text-black-light-utility
                             "
                         >
-                            Duration
+                            {ticketBoxT(
+                                "duration",
+                            )}
                         </span>
 
                         <span className="font-bold">
-                            {event.duration} min
+                            {event.duration}{" "}
+                            {ticketBoxT("minutes")}
                         </span>
 
                     </div>
@@ -519,8 +534,8 @@ function CinemaAndTheaterTicketBox({
                     "
                 >
                     {event.price !== null
-                        ? `${event.price.toLocaleString()} Toman`
-                        : "Free"}
+                        ? `${event.price.toLocaleString()} ${ticketBoxT("currency")}`
+                        : ticketBoxT("free")}
                 </div>
 
             </div>
@@ -558,9 +573,7 @@ function CinemaAndTheaterTicketBox({
                                 "click-scale",
                             ],
                     )}
-                    onClick={
-                        bookingHandler
-                    }
+                    onClick={bookingHandler}
                 >
 
                     {isInProgress ? (
@@ -576,6 +589,8 @@ function CinemaAndTheaterTicketBox({
 
                             {buttonContent}
                         </>
+                    ) : isFinished ? (
+                        buttonContent
                     ) : (
                         <>
                             <FaTicket
@@ -595,3 +610,4 @@ function CinemaAndTheaterTicketBox({
 }
 
 export default CinemaAndTheaterTicketBox;
+

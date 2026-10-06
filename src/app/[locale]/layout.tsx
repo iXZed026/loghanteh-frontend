@@ -186,7 +186,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={direction}>
-      <body className={font}>
+      <body className={font} cz-shortcut-listen="true">
         <NextIntlClientProvider messages={messages}>
           <ProfileProvider>
             <TicketPaymentProvider>
@@ -202,7 +202,7 @@ export default async function LocaleLayout({
             </TicketPaymentProvider>
           </ProfileProvider>
         </NextIntlClientProvider>
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );
