@@ -273,20 +273,23 @@ function SelectedSeats({
             </div>
 
             {/* Seats */}
-
             <div
-                className="
-                    mt-4
-                    sm:mt-5
-                "
+                className={cn(
+                    "mt-4",
+                    "sm:mt-5",
+                    "overflow-y-auto",
+                    "overscroll-contain",
+                    "pr-1",
+                    "scrollbar-thin",
+                    "h-60",
+                )}
             >
                 <div
                     className="
-                        fcol
-                        gap-3
-                    "
+            fcol
+            gap-3
+        "
                 >
-
                     {Object.entries(
                         groupedSeats,
                     ).map(
@@ -294,72 +297,65 @@ function SelectedSeats({
                             <div
                                 key={row}
                                 className="
-                                    flex
-                                    min-w-0
-                                    items-start
-                                    gap-2
-                                    sm:gap-3
-                                "
+                        flex
+                        min-w-0
+                        items-start
+                        gap-2
+                        sm:gap-3
+                    "
                             >
-
                                 <span
                                     className="
-                                        w-10
-                                        shrink-0
-                                        pt-2
-                                        text-[10px]
-                                        font-semibold
-                                        text-black-light-utility
-                                        sm:w-14
-                                        sm:text-xs
-                                    "
+                            w-10
+                            shrink-0
+                            pt-2
+                            text-[10px]
+                            font-semibold
+                            text-black-light-utility
+                            sm:w-14
+                            sm:text-xs
+                        "
                                 >
                                     {T("row")} {row}
                                 </span>
 
                                 <div
                                     className="
-                                        flex
-                                        min-w-0
-                                        flex-1
-                                        flex-wrap
-                                        gap-1.5
-                                        sm:gap-2
-                                    "
+                            flex
+                            min-w-0
+                            flex-1
+                            flex-wrap
+                            gap-1.5
+                            sm:gap-2
+                        "
                                 >
                                     {rowSeats?.map(
                                         (seat) => (
                                             <span
-                                                key={
-                                                    seat.id
-                                                }
+                                                key={seat.id}
                                                 className="
-                                                    fcc
-                                                    h-8
-                                                    min-w-8
-                                                    rounded-lg
-                                                    bg-crimson
-                                                    px-2
-                                                    text-xs
-                                                    font-semibold
-                                                    text-white-utility
-                                                    sm:h-9
-                                                    sm:min-w-9
-                                                    sm:text-sm
-                                                "
+                                        fcc
+                                        h-8
+                                        min-w-8
+                                        rounded-lg
+                                        bg-crimson
+                                        px-2
+                                        text-xs
+                                        font-semibold
+                                        text-white-utility
+                                        sm:h-9
+                                        sm:min-w-9
+                                        sm:text-sm
+                                    "
                                             >
-                                                {
-                                                    seat.seatNum
-                                                }
+                                                {seat.seatNum}
                                             </span>
                                         ),
                                     )}
                                 </div>
-
                             </div>
                         ),
                     )}
-
                 </div>
             </div>
 

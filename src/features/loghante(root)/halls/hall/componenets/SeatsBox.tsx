@@ -38,24 +38,24 @@ function SeatsBox({
                 /*
                  * Mobile
                  */
-                "size-5",
-                "rounded-md",
+                "size-7.5",
+                "rounded-lg",
                 "text-[8px]",
 
                 /*
                  * Desktop
                  * Keep the original seat size.
                  */
-                "sm:size-9",
-                "sm:rounded-lg",
-                "sm:text-[10px]",
+                "sm:size-11",
+                "sm:rounded-xl",
+                "sm:text-sm",
 
                 "shrink-0",
                 "grow-0",
 
                 "fcc",
 
-                "font-semibold",
+                "font-medium",
 
                 "transition-all",
                 "duration-150",

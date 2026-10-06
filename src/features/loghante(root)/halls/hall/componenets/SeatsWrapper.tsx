@@ -178,7 +178,7 @@ function SeatsWrapper({
                     flex-col
                     gap-4
                     rounded-2xl
-                    sm:border
+                    md:border
                     border-black-opacity
                     bg-white
                     px-2
@@ -224,7 +224,9 @@ function SeatsWrapper({
                                 <div
                                     className="
                                         hidden
-                                        sm:fcc
+                                        md:flex
+                                        items-center
+                                        justify-center
                                         size-4
                                         shrink-0
                                         
