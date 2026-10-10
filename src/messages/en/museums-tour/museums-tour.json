@@ -7,6 +7,8 @@
         "title": "Choose a date and buy a ticket"
     },
     "ticket-box": {
+        "failed-to-load":"Failed to load tickets.",
+        "not-today":"No tickets available for this day.",
         "capacity": "Remaining capacity",
         "ticket-count": "Number of tickets",
         "selected-tickets": "{count} ticket(s) selected",

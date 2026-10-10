@@ -1,64 +1,28 @@
 "use client";
 
-import {
-    ReactNode,
-    useEffect,
-} from "react";
-
-import {
-    useLocale,
-} from "next-intl";
-
-import {
-    useRouter,
-} from "next/navigation";
-
-import {
-    useTicketPayment,
-} from "../../context/TicketPaymentContext";
+import { ReactNode, useEffect } from "react";
+import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useTicketPayment } from "../../context/TicketPaymentContext";
 
 interface PaymentGuardProps {
     children: ReactNode;
 }
 
-function PaymentGuard({
-    children,
-}: PaymentGuardProps) {
+function PaymentGuard({ children }: PaymentGuardProps) {
+    const router = useRouter();
+    const locale = useLocale();
 
-    const router =
-        useRouter();
-
-    const locale =
-        useLocale();
-
-    const {
-        paymentData,
-        isReady,
-    } = useTicketPayment();
+    const { paymentData, isReady } = useTicketPayment();
 
     useEffect(() => {
-
-        if (
-            isReady &&
-            !paymentData
-        ) {
-            router.replace(
-                `/${locale}`,
-            );
+        if (isReady && !paymentData) {
+            router.replace(`/${locale}/profile/ticket-purchased`);
+            // router.back();
         }
+    }, [isReady, paymentData, locale, router]);
 
-    }, [
-        isReady,
-        paymentData,
-        locale,
-        router,
-    ]);
-
-    if (!isReady) {
-        return null;
-    }
-
-    if (!paymentData) {
+    if (!isReady || !paymentData) {
         return null;
     }
 

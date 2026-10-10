@@ -16,6 +16,7 @@ interface BookingSeatResponse {
 export interface CreateSeatBookingPayload {
     sessionId: number
     seatIds: number[]
+    discountCodeId?: number
 }
 
 export interface CreateSeatBookingResponse {
@@ -27,7 +28,6 @@ export interface CreateSeatBookingResponse {
 export async function getBookingSeats(
     sessionId: number,
 ): Promise<BookingSeat[]> {
-
     const response =
         await fetcher<BookingSeatResponse>(
             `/tickets/booking-seat/${sessionId}`,
@@ -40,7 +40,6 @@ export async function createSeatBooking(
     data: CreateSeatBookingPayload,
     locale: string,
 ): Promise<CreateSeatBookingResponse> {
-
     return fetcher<CreateSeatBookingResponse>(
         "/tickets/booking-seat",
         {

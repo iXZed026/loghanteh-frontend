@@ -99,6 +99,15 @@ export const navLinks: INavLink[] = [
   {
     id: 10,
     name: {
+      en: "Workshops and studios",
+      fa: "کارگاه ها و استودیو ها",
+    },
+    path: "#workshops-and-sstudios",
+  },
+
+  {
+    id: 11,
+    name: {
       en: "Contact Us",
       fa: "تماس با ما",
     },

@@ -1,29 +1,39 @@
 {
     "title": "داشبورد",
-    "sub-title-first-section": "خوش برگشتی، ",
-    "sub-title-second-section": " اینجا نگاهی سریع به فعالیت‌های اخیرت در لُغَنتِه داریم ",
+    "sub-title-first-section": "خوش آمدید، ",
+    "sub-title-second-section": " در اینجا نمای کلی سریعی از فعالیت شما در لوغانته را مشاهده می‌کنید ",
     "activity": {
-        "upcoming-visit": {
-            "title": "بازدید پیش‌رو"
+        "friendly-club": {
+            "tier": "سطح فعلی",
+            "points": "امتیاز شما: "
         },
         "tickets": {
-            "title": "بلیت‌ها"
+            "title": "بلیط‌ها",
+            "purchased": "بلیط‌های خریداری‌شده"
         },
         "collections": {
-            "title": "کالکشن ها"
+            "title": "کلکسیون‌ها",
+            "saved": "موارد ذخیره‌شده"
         }
     },
     "upcoming-ticket": {
         "ticket-details": {
-            "reservation-code": "کد رزرو: "
+            "reservation-code": "کد رزرو: ",
+            "reserved-status": "رزرو ثبت شده",
+            "visit-details": "جزئیات بازدید آینده شما"
         },
         "date-and-views": {
-            "view-ticket-button": "مشاهده بلیت"
+            "view-ticket-button": "مشاهده بلیط",
+            "no-upcoming-visits": "فعلاً بازدیدی در پیش ندارید",
+            "no-upcoming-visits-description": "پس از ثبت رزرو، اطلاعات بازدید بعدی شما اینجا نمایش داده می‌شود.",
+            "no-upcoming-booking": "بدون رزرو آینده",
+            "location": "لوغانته، تهران"
         }
     },
-    "discover-museums": {
-        "title": "موزه‌های لُغَنتِه را کشف کن",
-        "sub-title": "موزه‌ها، نمایشگاه‌ها و مجموعه‌های فرهنگی ما را ماوش کن",
-        "museums-button": "دیدن موزه‌ها"
-    }
+    "frindly-club-discover": {
+        "title": "باشگاه دوستان لوغانته",
+        "sub-title": "از امتیازهای خود برای تخفیف‌ها، محصولات ویژه، دعوت به رویدادها و موارد بیشتر استفاده کنید. هرچه بیشتر کاوش کنید، بیشتر به دست می‌آورید ",
+        "museums-button": "کاوش مزایا"
+    },
+    "logout-success": "شما با موفقیت از حساب خود خارج شدید."
 }

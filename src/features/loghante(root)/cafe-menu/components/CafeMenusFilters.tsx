@@ -8,7 +8,13 @@ import { useSearchParams } from 'next/navigation'
 import { getLocalizedValue } from '@/lib/utils/getLocalizedValue'
 import { useLocale } from 'next-intl'
 
-function CafeMenusFilters() {
+interface ICafeMenusFilters {
+    cafeId: number
+}
+
+function CafeMenusFilters({
+    cafeId,
+}:ICafeMenusFilters) {
 
     const searchParams = useSearchParams()
 
@@ -17,7 +23,7 @@ function CafeMenusFilters() {
     const activeFilter =
         searchParams.get("filter") || cafeMenusFilters[0].slug
 
-    
+
 
     return (
         <div>
@@ -38,11 +44,11 @@ function CafeMenusFilters() {
                                         ? "border-[var(--crimson-color)] text-crimson font-bold"
                                         : "border-transparent text-black"
                                 )}
-                                href={`/cafe-menu?filter=${filter.slug}`}
+                                href={`/cafe-menu/${cafeId}?filter=${filter.slug}`}
                                 scroll={false}
                             >
                                 {
-                                    getLocalizedValue(filter.name,locale)
+                                    getLocalizedValue(filter.name, locale)
                                 }
                             </AppLink>
                         </li>

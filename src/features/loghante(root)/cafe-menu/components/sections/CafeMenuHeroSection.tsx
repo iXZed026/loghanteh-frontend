@@ -1,39 +1,75 @@
+'use client'
+
 import Container from '@/components/shared/Container'
 import { cn } from '@/lib/utils/cn'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+import { getLocalizedValue } from '@/lib/utils/getLocalizedValue'
+import { useLocale, useTranslations } from 'next-intl'
+import { cafeMenus } from '../../data/cafe-menus'
 
-function CafeMenuHero() {
+interface CafeMenuHeroProps {
+    cafeId: number
+}
 
-    const cafeMenuHeroT =
-        useTranslations("cafeMenu.hero")
+function CafeMenuHero({
+    cafeId,
+}: CafeMenuHeroProps) {
+    const cafeMenuHeroT = useTranslations(
+        'cafeMenu.hero',
+    )
+
+    const locale = useLocale()
+
+    const cafe = cafeMenus.find(
+        (menu) => menu.id === cafeId,
+    )
+
+    const title = cafe
+        ? getLocalizedValue(cafe.name, locale)
+        : cafeMenuHeroT('title')
 
     return (
-        <section id="cafe-menus" className='relative h-screen select-none'>
-            {/* Video */}
+        <section
+            id="cafe-menus"
+            className="relative h-screen select-none"
+        >
             <video
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover"
+                className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                "
             >
                 <source
                     src="https://74aex8lzr0js8tkj.public.blob.vercel-storage.com/loghante-hero-video.mp4"
                     type="video/mp4"
                 />
             </video>
-            {/* Content */}
-            <div className={cn(
-                "w-full",
-                "py-12",
-                "absolute bottom-0 left-0",
-                "gradient-shadow",
-            )}>
+
+            <div
+                className={cn(
+                    'absolute bottom-0 left-0 w-full',
+                    'gradient-shadow',
+                    'py-12',
+                )}
+            >
                 <Container>
                     <div className="text-white-utility">
-                        <h1 className="font-wulkan mb-7 text-3xl font-bold md:text-5xl">
-                            {cafeMenuHeroT("title")}
+                        <h1
+                            className="
+                                mb-7
+                                font-wulkan
+                                text-3xl
+                                font-bold
+                                md:text-5xl
+                            "
+                        >
+                            {title}
                         </h1>
                     </div>
                 </Container>

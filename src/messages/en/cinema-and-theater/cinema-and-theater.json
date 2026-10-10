@@ -20,6 +20,7 @@
         "duration": "Duration",
         "minutes": "min",
         "currency": "Toman",
-        "free": "Free"
+        "free": "Free",
+        "not-today":"There is no plan for this day."
     }
 }

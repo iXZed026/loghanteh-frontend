@@ -47,10 +47,10 @@ function ProfileDiscoverMuseums({
                 )}
             >
                 <span className='font-semibold text-lg'>
-                    {dashboardPageT("discover-museums.title")}
+                    {dashboardPageT("frindly-club-discover.title")}
                 </span>
                 <p className='font-light text-black-light-utility'>
-                    {dashboardPageT("discover-museums.sub-title")}
+                    {dashboardPageT("frindly-club-discover.sub-title")}
                 </p>
             </div>
             <div
@@ -59,7 +59,7 @@ function ProfileDiscoverMuseums({
                 )}
             >
                 <AppLink
-                    href='/#museums'
+                    href='/profile/friendly-club'
                 >
                     <Button
                         className={cn(
@@ -69,7 +69,7 @@ function ProfileDiscoverMuseums({
                             "hover:bg-[var(--gold-hover-color)]"
                         )}
                     >
-                        {dashboardPageT("discover-museums.museums-button")}
+                        {dashboardPageT("frindly-club-discover.museums-button")}
                         <ArrowIcon />
                     </Button>
                 </AppLink>

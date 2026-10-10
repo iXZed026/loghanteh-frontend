@@ -9,7 +9,7 @@ function WorkshopAndStudios() {
     const cmT = useTranslations("common")
 
     return (
-        <section id="workshops_and-sstudios" className='loghante-section'>
+        <section id="workshops-and-sstudios" className='loghante-section'>
             <LoghantehSectionBox
                 sectionName={t("section-name")}
                 title={t("title")}

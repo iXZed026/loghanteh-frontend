@@ -1,29 +1,39 @@
 {
     "title": "Dashboard",
-    "sub-title-first-section": "Welcome back, ",
-    "sub-title-second-section": " here’s a quick overview of your activity at Loghanteh ",
+    "sub-title-first-section": "Welcome, ",
+    "sub-title-second-section": " Here is a quick overview of your activity at Loghanteh ",
     "activity": {
-        "upcoming-visit": {
-            "title": "Upcoming Visit"
+        "friendly-club": {
+            "tier": "Current Tier",
+            "points": "Your Points: "
         },
         "tickets": {
-            "title": "Tickets"
+            "title": "Tickets",
+            "purchased": "Purchased Tickets"
         },
         "collections": {
-            "title": "Collections"
+            "title": "Collections",
+            "saved": "Saved Items"
         }
     },
     "upcoming-ticket": {
         "ticket-details": {
-            "reservation-code": "Reservation code: "
+            "reservation-code": "Reservation Code: ",
+            "reserved-status": "Reservation Confirmed",
+            "visit-details": "Your upcoming visit details"
         },
         "date-and-views": {
-            "view-ticket-button": "View Ticket"
+            "view-ticket-button": "View Ticket",
+            "no-upcoming-visits": "No upcoming visits",
+            "no-upcoming-visits-description": "Your next visit details will appear here once you make a reservation.",
+            "no-upcoming-booking": "No upcoming booking",
+            "location": "Loghanteh, Tehran"
         }
     },
-    "discover-museums": {
-        "title": "Discover the museums of Loghanteh",
-        "sub-title": "Explore our museums, exhibitions and cultural collections",
-        "museums-button": "Explore Museums"
-    }
+    "frindly-club-discover": {
+        "title": "Loghanteh Friends Club",
+        "sub-title": "Use your points for discounts, exclusive products, event invitations, and more. The more you explore, the more you earn.",
+        "museums-button": "Explore Benefits"
+    },
+    "logout-success": "You have successfully logged out."
 }

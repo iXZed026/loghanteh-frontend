@@ -1,16 +1,20 @@
+
 "use client"
 
 import Modal from "@/components/shared/modal/Modal"
 import Button from "@/components/ui/Button"
+import Loading from "@/components/ui/Loading"
 import { cn } from "@/lib/utils/cn"
-import React, {
-    FormEvent,
-    useState,
-} from "react"
+import { formatPrice } from "@/lib/utils/formatPrice"
+import { calculateDiscountPrice } from "@/lib/utils/calculateDiscountPrice"
+
+import { useState } from "react"
+
 import {
     useLocale,
     useTranslations,
 } from "next-intl"
+
 import PaymentDiscoutCodeDropDown from "./PaymentDiscoutCodeDropDown"
 
 import {
@@ -25,24 +29,21 @@ import {
     useTicketPayment,
 } from "../../context/TicketPaymentContext"
 
-import {
-    formatPrice,
-} from "@/lib/utils/formatPrice"
-import Loading from "@/components/ui/Loading"
+import type {
+    DiscountCodeResponse,
+} from "@/lib/api/discount-codes/discount-codes"
 
 interface IModalState {
     active: boolean
     success: boolean | "warning"
     message: string
     pushUrl?: string
+    clearData?: () => void
 }
 
 function PaymentDetails() {
-
     const paymentPaymentDetailsT =
-        useTranslations(
-            "payment.payment-details",
-        )
+        useTranslations("payment.payment-details")
 
     const commonT =
         useTranslations("common")
@@ -66,6 +67,11 @@ function PaymentDetails() {
     ] = useState<boolean>(false)
 
     const [
+        discountData,
+        setDiscountData,
+    ] = useState<DiscountCodeResponse | null>(null)
+
+    const [
         modal,
         setModal,
     ] = useState<IModalState>({
@@ -73,6 +79,7 @@ function PaymentDetails() {
         success: false,
         message: "",
         pushUrl: undefined,
+        clearData: undefined,
     })
 
     if (!paymentData) {
@@ -90,18 +97,34 @@ function PaymentDetails() {
     const totalPrice =
         unitPrice * quantity
 
+    const discount = discountData?.success
+        ? calculateDiscountPrice({
+            price: totalPrice,
+            discountPercent:
+                discountData.data.discountPercent,
+            maxDiscountAmount:
+                discountData.data.maxDiscountAmount,
+        })
+        : {
+            originalPrice: totalPrice,
+            discountAmount: 0,
+            finalPrice: totalPrice,
+        }
+
+    const discountedPrice =
+        discount.finalPrice
+
+    const discountAmount =
+        discount.discountAmount
+
     const vat =
-        totalPrice * 0.1
+        discountedPrice * 0.1
 
     const payable =
-        totalPrice + vat
+        discountedPrice + vat
 
-    async function submitHandler(
-        event: FormEvent<HTMLFormElement>,
-    ) {
-        event.preventDefault()
-
-        if (quantity < 1) {
+    async function submitHandler() {
+        if (quantity < 1 || isSubmitting) {
             return
         }
 
@@ -110,7 +133,6 @@ function PaymentDetails() {
                 active: true,
                 success: "warning",
                 message: "Please select a payment method.",
-                pushUrl: undefined,
             })
 
             return
@@ -122,16 +144,16 @@ function PaymentDetails() {
             let response
 
             if (paymentData?.hall) {
-                const seatIds = paymentData.hall.seatsNumbs.map(
-                    (seat) => seat.seatId,
-                )
+                const seatIds =
+                    paymentData.hall.seatsNumbs.map(
+                        (seat) => seat.seatId,
+                    )
 
                 if (seatIds.length === 0) {
                     setModal({
                         active: true,
                         success: false,
                         message: "No seats selected.",
-                        pushUrl: undefined,
                     })
 
                     return
@@ -141,6 +163,8 @@ function PaymentDetails() {
                     {
                         sessionId: ticket.sessionId,
                         seatIds,
+                        discountCodeId:
+                            discountData?.data.discountCodeId,
                     },
                     locale,
                 )
@@ -149,6 +173,8 @@ function PaymentDetails() {
                     {
                         sessionId: ticket.sessionId,
                         quantity,
+                        discountCodeId:
+                            discountData?.data.discountCodeId,
                     },
                     locale,
                 )
@@ -159,7 +185,6 @@ function PaymentDetails() {
                     active: true,
                     success: false,
                     message: response.message,
-                    pushUrl: undefined,
                 })
 
                 return
@@ -170,9 +195,8 @@ function PaymentDetails() {
                 success: true,
                 message: response.message,
                 pushUrl: "/profile/ticket-purchased",
+                clearData: clearPaymentData,
             })
-
-            // clearPaymentData()
         } catch (error) {
             setModal({
                 active: true,
@@ -181,11 +205,16 @@ function PaymentDetails() {
                     error instanceof Error
                         ? error.message
                         : "An error occurred while creating the booking.",
-                pushUrl: undefined,
             })
         } finally {
             setIsSubmitting(false)
         }
+    }
+
+    function getDiscountData(
+        data: DiscountCodeResponse,
+    ) {
+        setDiscountData(data)
     }
 
     return (
@@ -195,6 +224,7 @@ function PaymentDetails() {
                 message={modal.message}
                 success={modal.success}
                 pushUrl={modal.pushUrl}
+                clearData={modal.clearData}
                 onClose={() => {
                     setModal((prev) => ({
                         ...prev,
@@ -203,8 +233,7 @@ function PaymentDetails() {
                 }}
             />
 
-            <form
-                onSubmit={submitHandler}
+            <div
                 className={cn(
                     "lg:col-span-6 col-span-12",
                     "md:p-10 p-8",
@@ -214,23 +243,15 @@ function PaymentDetails() {
                     "pb-28 md:pb-10",
                 )}
             >
-
                 {/* Payment Details */}
-
                 <div>
                     <span className="text-xl font-semibold">
-                        {
-                            paymentPaymentDetailsT(
-                                "title",
-                            )
-                        }
+                        {paymentPaymentDetailsT("title")}
                     </span>
                 </div>
 
                 {/* Ticket Details */}
-
                 <div className="fcol py-5 px-5">
-
                     <div
                         className={cn(
                             "py-10",
@@ -238,63 +259,53 @@ function PaymentDetails() {
                             "border-black-opacity",
                         )}
                     >
-
+                        {/* Ticket Price */}
                         <div className="fbc mb-5">
-
                             <span className="w-full">
-
-                                {
-                                    paymentPaymentDetailsT(
-                                        "ticket-details.ticket",
-                                    )
-                                }{" "}
-
-                                {
-                                    formatPrice(
-                                        unitPrice,
-                                    )
-                                }
-
+                                {paymentPaymentDetailsT(
+                                    "ticket-details.ticket",
+                                )}{" "}
+                                {formatPrice(unitPrice)}
                                 {commonT("price-type")}
-
                             </span>
 
                             <span className="w-full text-center">
-
                                 {quantity}{" "}
-
-                                {
-                                    paymentPaymentDetailsT(
-                                        "ticket-details.ticket-count",
-                                    )
-                                }
-
+                                {paymentPaymentDetailsT(
+                                    "ticket-details.ticket-count",
+                                )}
                             </span>
 
                             <span className="w-full text-end">
-
-                                {
-                                    formatPrice(
-                                        totalPrice,
-                                    )
-                                }
-
+                                {formatPrice(totalPrice)}
                                 {commonT("price-type")}
-
                             </span>
-
                         </div>
 
+                        {/* Discount */}
+                        {discountAmount > 0 && (
+                            <div className="fbc mb-5 text-crimson">
+                                <span className="w-full">
+                                    Discount
+                                </span>
+
+                                <span className="w-full text-center">
+                                    {discountData?.data.discountPercent}%
+                                </span>
+
+                                <span className="w-full text-end">
+                                    -{formatPrice(discountAmount)}
+                                    {commonT("price-type")}
+                                </span>
+                            </div>
+                        )}
+
+                        {/* VAT */}
                         <div className="fbc">
-
                             <span className="w-full">
-
-                                {
-                                    paymentPaymentDetailsT(
-                                        "ticket-vat.ticket-vat",
-                                    )
-                                }
-
+                                {paymentPaymentDetailsT(
+                                    "ticket-vat.ticket-vat",
+                                )}
                             </span>
 
                             <span className="w-full text-center">
@@ -302,55 +313,31 @@ function PaymentDetails() {
                             </span>
 
                             <span className="w-full text-end">
-
-                                {
-                                    formatPrice(
-                                        vat,
-                                    )
-                                }
-
+                                {formatPrice(vat)}
                                 {commonT("price-type")}
-
                             </span>
-
                         </div>
-
                     </div>
 
                     {/* Payable */}
-
                     <div className="py-10 fbc">
-
                         <span className="font-bold text-xl">
-                            {
-                                paymentPaymentDetailsT(
-                                    "payable",
-                                )
-                            }
+                            {paymentPaymentDetailsT("payable")}
                         </span>
 
                         <span className="text-xl font-bold text-crimson">
-
-                            {
-                                formatPrice(
-                                    payable,
-                                )
-                            }
-
+                            {formatPrice(payable)}
                             {commonT("price-type")}
-
                         </span>
-
                     </div>
-
                 </div>
 
-                {/* Discount */}
-
-                <PaymentDiscoutCodeDropDown />
+                {/* Discount Code */}
+                <PaymentDiscoutCodeDropDown
+                    onDIscountData={getDiscountData}
+                />
 
                 {/* Payment Method */}
-
                 <div
                     className={cn(
                         "fcol",
@@ -359,14 +346,11 @@ function PaymentDetails() {
                         "mb-15",
                     )}
                 >
-
                     <div>
                         <span className="text-xl">
-                            {
-                                paymentPaymentDetailsT(
-                                    "payment-method.title",
-                                )
-                            }
+                            {paymentPaymentDetailsT(
+                                "payment-method.title",
+                            )}
                         </span>
                     </div>
 
@@ -377,42 +361,28 @@ function PaymentDetails() {
                             "gap-5",
                         )}
                     >
-
-                        {/* Saman */}
-
                         <label
                             className={cn(
                                 "flex items-center gap-2",
                                 "cursor-pointer",
                             )}
                         >
-
                             <input
                                 type="radio"
                                 name="payment-method"
                                 value="saman"
-                                checked={
-                                    paymentMethod ===
-                                    "saman"
-                                }
-                                onChange={(e) =>
-                                    setPaymentMethod(
-                                        e.target.value,
-                                    )
+                                checked={paymentMethod === "saman"}
+                                onChange={(event) =>
+                                    setPaymentMethod(event.target.value)
                                 }
                             />
 
                             <span>
-                                {
-                                    paymentPaymentDetailsT(
-                                        "payment-method.saman",
-                                    )
-                                }
+                                {paymentPaymentDetailsT(
+                                    "payment-method.saman",
+                                )}
                             </span>
-
                         </label>
-
-                        {/* Another */}
 
                         <label
                             className={cn(
@@ -420,38 +390,26 @@ function PaymentDetails() {
                                 "cursor-pointer",
                             )}
                         >
-
                             <input
                                 type="radio"
                                 name="payment-method"
                                 value="another"
-                                checked={
-                                    paymentMethod ===
-                                    "another"
-                                }
-                                onChange={(e) =>
-                                    setPaymentMethod(
-                                        e.target.value,
-                                    )
+                                checked={paymentMethod === "another"}
+                                onChange={(event) =>
+                                    setPaymentMethod(event.target.value)
                                 }
                             />
 
                             <span>
-                                {
-                                    paymentPaymentDetailsT(
-                                        "payment-method.another",
-                                    )
-                                }
+                                {paymentPaymentDetailsT(
+                                    "payment-method.another",
+                                )}
                             </span>
-
                         </label>
-
                     </div>
-
                 </div>
 
                 {/* Payment Button */}
-
                 <div
                     className={cn(
                         "fixed",
@@ -466,9 +424,9 @@ function PaymentDetails() {
                         "md:z-auto",
                     )}
                 >
-
                     <Button
-                        type="submit"
+                        type="button"
+                        onClick={submitHandler}
                         disabled={isSubmitting}
                         className={cn(
                             "w-full",
@@ -478,45 +436,29 @@ function PaymentDetails() {
                             "bg-crimson",
                             "md:rounded-lg rounded-none",
                             "hover:bg-[var(--crimson-hover-color)]",
-
                             isSubmitting &&
-                            "opacity-60 cursor-not-allowed",
+                                "opacity-60 cursor-not-allowed",
                         )}
                     >
-
                         <span>
-
-                            {
-                                isSubmitting
-                                    ?<Loading
-                                        className="w-full"
-                                        size={40}
-                                        color="var(--white-color)"
-                                    />
-                                        : paymentPaymentDetailsT(
-                                            "payment-button",
-                                        )
-                            }
-
+                            {isSubmitting ? (
+                                <Loading
+                                    className="w-full"
+                                    size={40}
+                                    color="var(--white-color)"
+                                />
+                            ) : (
+                                paymentPaymentDetailsT("payment-button")
+                            )}
                         </span>
 
                         <span>
-
-                            {
-                                formatPrice(
-                                    payable,
-                                )
-                            }
-
+                            {formatPrice(payable)}
                             {commonT("price-type")}
-
                         </span>
-
                     </Button>
-
                 </div>
-
-            </form>
+            </div>
         </>
     )
 }

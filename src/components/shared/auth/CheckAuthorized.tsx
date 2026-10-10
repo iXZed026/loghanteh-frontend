@@ -110,7 +110,7 @@ function CheckAuthorized({
         )
 
         router.replace(
-            `/${locale}/login`,
+            `/${locale}`,
         )
 
     }, [

@@ -1,19 +1,21 @@
-"use client"
+"use client";
 
-import AnimatePresenceWrapper from "@/components/animations/AnimatePresenceWrapper"
-import { defaultTransitionOut } from "@/lib/animations/transitions"
-import { cn } from "@/lib/utils/cn"
-import { motion } from "framer-motion"
-import { useLocale } from "next-intl"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react";
+import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+
+import AnimatePresenceWrapper from "@/components/animations/AnimatePresenceWrapper";
+import { defaultTransitionOut } from "@/lib/animations/transitions";
+import { cn } from "@/lib/utils/cn";
 
 export interface IModal {
-    active: boolean
-    message: string
-    success: boolean | "warning"
-    pushUrl?: string
-    onClose?: () => void
+    active: boolean;
+    message: string;
+    success: boolean | "warning";
+    pushUrl?: string;
+    onClose?: () => void;
+    clearData?: () => void;
 }
 
 function Modal({
@@ -22,37 +24,34 @@ function Modal({
     success,
     pushUrl,
     onClose,
+    clearData,
 }: IModal) {
-
-    const locale = useLocale()
-    const router = useRouter()
+    const locale = useLocale();
+    const router = useRouter();
+    const handledRef = useRef(false);
 
     useEffect(() => {
-
         if (!active) {
-            return
+            handledRef.current = false;
+            return;
         }
 
-        const timeout =
-            setTimeout(() => {
+        const timeout = window.setTimeout(() => {
+            if (handledRef.current) return;
 
-                onClose?.()
+            handledRef.current = true;
 
-                if (
-                    success === true &&
-                    pushUrl
-                ) {
-                    router.push(
-                        `/${locale}${pushUrl}`,
-                    )
-                }
+            if (success === true && pushUrl) {
+                router.push(`/${locale}${pushUrl}`);
+                clearData?.();
+            }
 
-            }, 1500)
+            onClose?.();
+        }, 1500);
 
         return () => {
-            clearTimeout(timeout)
-        }
-
+            window.clearTimeout(timeout);
+        };
     }, [
         active,
         success,
@@ -60,49 +59,34 @@ function Modal({
         locale,
         router,
         onClose,
-    ])
+        clearData,
+    ]);
 
     return (
-        <AnimatePresenceWrapper
-            isActive={active}
-        >
+        <AnimatePresenceWrapper isActive={active}>
             <motion.div
-                initial={{
-                    opacity: 0,
-                    top: -10,
-                }}
-                animate={{
-                    opacity: 1,
-                    top: 20,
-                }}
-                exit={{
-                    opacity: 0,
-                    top: -10,
-                }}
+                initial={{ opacity: 0, top: -10 }}
+                animate={{ opacity: 1, top: 20 }}
+                exit={{ opacity: 0, top: -10 }}
                 transition={defaultTransitionOut}
                 className={cn(
-                    "min-w-113 py-4 px-4",
-                    "text-center font-semibold",
-                    "fixed left-1/2 -translate-x-1/2",
-                    "top-5",
-                    "z-100",
-                    "border-[1px]",
-                    "rounded-md",
-
+                    "fixed left-1/2 top-5 z-[100] -translate-x-1/2",
+                    "min-w-85 max-w-[calc(100vw-2rem)] px-7 py-4",
+                    "rounded-md border text-center font-semibold",
                     success === true &&
-                    "border-[#06582c] bg-[#54cc88]",
-
+                        "border-[#06582c] bg-[#54cc88]",
                     success === false &&
-                    "border-red-800 bg-red-300",
-
+                        "border-red-800 bg-red-300",
                     success === "warning" &&
-                    "border-yellow-800 bg-yellow-300",
+                        "border-yellow-800 bg-yellow-300",
                 )}
+                role="status"
+                aria-live="polite"
             >
                 {message}
             </motion.div>
         </AnimatePresenceWrapper>
-    )
+    );
 }
 
-export default Modal
+export default Modal;

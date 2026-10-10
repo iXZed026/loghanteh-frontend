@@ -35,7 +35,7 @@ export function getHeaderBackground(
     pathname === `/${locale}/`;
 
   const isCafeMenu =
-    pathname === `/${locale}/cafe-menu`;
+    pathname.includes(`/${locale}/cafe-menu`);
 
   const isCafeOrHome =
     isHome || isCafeMenu;

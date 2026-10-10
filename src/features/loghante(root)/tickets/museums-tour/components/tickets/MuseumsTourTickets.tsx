@@ -30,6 +30,11 @@ function MuseumsTourTickets() {
             "museumsTour.day-of-the-weeks"
         );
 
+    const meuseumsTourBoxT =
+        useTranslations(
+            "museumsTour.ticket-box"
+        );
+
     const locale = useLocale();
 
     const [selectedDate, setSelectedDate] =
@@ -164,7 +169,7 @@ function MuseumsTourTickets() {
 
                     <div className="col-span-12 fcc py-10">
                         <span>
-                            Failed to load tickets.
+                             {meuseumsTourBoxT("failed-to-load")}
                         </span>
                     </div>
 
@@ -176,7 +181,7 @@ function MuseumsTourTickets() {
 
                         <div className="col-span-12 fcc py-10">
                             <span>
-                                No tickets available for this day.
+                                {meuseumsTourBoxT("not-today")}
                             </span>
                         </div>
                     )}
