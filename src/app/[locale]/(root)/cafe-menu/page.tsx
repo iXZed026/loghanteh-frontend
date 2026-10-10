@@ -3,13 +3,31 @@ import AboutCafeMenuSection from '@/features/loghante(root)/cafe-menu/components
 import CafeMenuHero from '@/features/loghante(root)/cafe-menu/components/sections/CafeMenuHeroSection'
 import CafeMenusSections from '@/features/loghante(root)/cafe-menu/components/sections/CafeMenusSection'
 
-function CafeMenu() {
+interface CafeMenuPageProps {
+    searchParams: Promise<{
+        cafeId?: string
+    }>
+}
+
+async function CafeMenu({
+    searchParams,
+}: CafeMenuPageProps) {
+    const { cafeId: cafeIdParam } = await searchParams
+
+    const parsedCafeId = Number(cafeIdParam ?? 1)
+
+    const cafeId =
+        Number.isInteger(parsedCafeId) && parsedCafeId > 0
+            ? parsedCafeId
+            : 1
+
     return (
         <div>
-            <CafeMenuHero />
+            <CafeMenuHero cafeId={cafeId} />
+
             <Container>
-                <AboutCafeMenuSection />
-                <CafeMenusSections />
+                <AboutCafeMenuSection cafeId={cafeId} />
+                <CafeMenusSections cafeId={cafeId} />
             </Container>
         </div>
     )
