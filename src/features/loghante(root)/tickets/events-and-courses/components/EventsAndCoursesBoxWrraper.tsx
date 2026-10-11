@@ -67,7 +67,6 @@ function EventsAndCoursesBoxWrraper({
                 variants={
                     eventsAndCoursesContainerVariant
                 }
-                amount={0.2}
                 once
             >
                 {data.map((event) => (

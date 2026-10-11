@@ -9,6 +9,10 @@
     "box": {
         "not-month": "No events were found for this month.",
         "failed-load": "Failed to load events.",
+        "type": {
+            "event": "Event",
+            "course": "Course"
+        },
         "price-status": {
             "paid": "Paid",
             "free": "Free"

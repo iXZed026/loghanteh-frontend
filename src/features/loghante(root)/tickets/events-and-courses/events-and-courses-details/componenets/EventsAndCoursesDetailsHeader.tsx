@@ -1,9 +1,9 @@
-import EventsAndCoursesHeaderImages from './EventsAndCoursesHeaderImages'
-import EventsAndCoursesHeaderForm from './EventsAndCoursesHeaderForm'
+import EventsAndCoursesHeaderImages from "./EventsAndCoursesHeaderImages"
+import EventsAndCoursesHeaderForm from "./EventsAndCoursesHeaderForm"
 
 import {
     EventAndCourseSessionDetail,
-} from '@/lib/api/ticket/events-and-courses'
+} from "@/lib/api/ticket/events-and-courses"
 
 interface EventsAndCoursesDetailsHeaderProps {
     event: EventAndCourseSessionDetail
@@ -12,21 +12,18 @@ interface EventsAndCoursesDetailsHeaderProps {
 function EventsAndCoursesDetailsHeader({
     event,
 }: EventsAndCoursesDetailsHeaderProps) {
-
     return (
-        <div className="grid grid-cols-12 lg:gap-10 gap-y-10">
+        <section className="grid grid-cols-12 items-stretch gap-x-8 gap-y-10 lg:gap-x-12">
+            <div className="col-span-12 min-w-0 lg:col-span-7">
+                <EventsAndCoursesHeaderImages
+                    images={event.images ?? []}
+                />
+            </div>
 
-            {/* Events Images */}
-            <EventsAndCoursesHeaderImages
-                images={event.images}
-            />
-
-            {/* Events Details */}
-            <EventsAndCoursesHeaderForm
-                event={event}
-            />
-
-        </div>
+            <div className="col-span-12 min-w-0 lg:col-span-5">
+                <EventsAndCoursesHeaderForm event={event} />
+            </div>
+        </section>
     )
 }
 
