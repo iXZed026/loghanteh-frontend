@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils/cn'
 import EventAndCoursesBox from './EventAndCoursesBox'
 import { EventSession } from '@/lib/api/ticket/events-and-courses'
 import Loading from '@/components/ui/Loading'
+import { useTranslations } from 'next-intl'
 
 interface EventsAndCoursesBoxWrraperProps {
     data: EventSession[]
@@ -20,6 +21,9 @@ function EventsAndCoursesBoxWrraper({
     isLoading,
     error,
 }: EventsAndCoursesBoxWrraperProps) {
+
+    const T =
+        useTranslations("eventsAndCourses.box")
 
     if (isLoading) {
         return (
@@ -37,7 +41,7 @@ function EventsAndCoursesBoxWrraper({
             <Container>
                 <div className="fcc lg:px-45 min-h-[30vh]">
                     <span className="text-lg">
-                        No events were found for this month.
+                        {T("not-month")}
                     </span>
                 </div>
             </Container>
@@ -48,7 +52,7 @@ function EventsAndCoursesBoxWrraper({
         return (
             <Container>
                 <div className="text-center">
-                    Failed to load events.
+                    {T("failed-load")}
                 </div>
             </Container>
         )

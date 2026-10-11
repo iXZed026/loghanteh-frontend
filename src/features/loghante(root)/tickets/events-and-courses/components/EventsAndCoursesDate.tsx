@@ -17,6 +17,7 @@ import {
 
 import Button from "@/components/ui/Button"
 import { FaRegCalendarAlt } from "react-icons/fa"
+import ArrowIcon from "@/components/shared/ArrowIcon"
 
 interface EventsAndCoursesDateProps {
     selectedDate: Date
@@ -114,7 +115,7 @@ function EventsAndCoursesDate({
                     "click-scale",
                 )}
             >
-                <FiChevronLeft size={24} />
+                <ArrowIcon direction="left"/>
             </button>
 
             {/* Month title */}
@@ -150,7 +151,7 @@ function EventsAndCoursesDate({
                     "click-scale",
                 )}
             >
-                <FiChevronRight size={24} />
+                <ArrowIcon direction=""/>
             </Button>
 
             {/* Month picker */}
