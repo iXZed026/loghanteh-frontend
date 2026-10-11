@@ -312,7 +312,7 @@ function EditProfileForm() {
                     <div className="fcol gap-2.5 text-sm">
 
                         <span>
-                            Current Password
+                            {editProfileT("inputs.current-password.title")}
                         </span>
 
                         <Input
@@ -336,7 +336,7 @@ function EditProfileForm() {
                     <div className="fcol gap-2.5 text-sm">
 
                         <span>
-                            New Password
+                            {editProfileT("inputs.new-password.title")}
                         </span>
 
                         <Input

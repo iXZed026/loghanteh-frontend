@@ -11,8 +11,11 @@
         "email": {
             "title": "آدرس ایمیل"
         },
-        "password": {
-            "title": "رمز عبور"
+        "current-password": {
+            "title": "رمز عبور فعلی"
+        },
+        "new-password": {
+            "title": "رمز عبور جدید"
         },
         "date": {
             "title": "تاریخ تولد:",

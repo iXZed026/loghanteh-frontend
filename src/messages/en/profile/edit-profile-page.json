@@ -11,8 +11,11 @@
         "email": {
             "title": "Email Addres"
         },
-        "password": {
-            "title": "Password"
+        "current-password": {
+            "title": "Current Password"
+        },
+        "new-password": {
+            "title": "New Password"
         },
         "date": {
             "title": "Date of birth:",

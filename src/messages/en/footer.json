@@ -13,11 +13,22 @@
         }
     },
     "contacts": {
-       "title":"Contacts & Address",
-       "list-items":{
-        "phone":"021-65555555",
-        "opening-hours": "From 8 AM To 4 PM",
-        "address": "Tehran, Iran, Loghanteh Historical and Cultural Complex"
-       }
+        "title": "Contacts & Address",
+        "list-items": {
+            "phone": "021-65555555",
+            "opening-hours": "From 8 AM To 4 PM",
+            "address": "Loghanteh Historical and Cultural Complex, Tehran, Iran"
+        }
+    },
+    "location": {
+        "title": "Find Us",
+        "name": "Loghanteh Cafe Museum",
+        "description": "View our location on Balad",
+        "open-map": "Open Loghanteh Cafe Museum location on Balad map",
+        "map-title": "Map showing the location of Loghanteh Cafe Museum"
+    },
+
+    "privacy":{
+        "message":"All rights reserved for the Loghanteh Cultural and Historical Complex."
     }
 }

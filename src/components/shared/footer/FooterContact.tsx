@@ -23,7 +23,7 @@ function FooterContact({
                 </h4>
             </div>
             <div>
-                <ul className='fcol gap-4 md:text-[16px] text-sm'>
+                <ul className='fcol gap-4 md:text-[13px] text-sm'>
                     <li className='flex items-center gap-2'>
                         <BsFillTelephoneFill className='size-5' />
                         <a href="phone:021-65555555">

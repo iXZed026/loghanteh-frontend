@@ -133,12 +133,6 @@ function EventsAndCoursesDetailsAbout({
                         </FadeIn>
                     </div>
 
-                    {/* Location */}
-
-                    <div>
-                        <div className="w-full h-80 bg-crimson rounded-xl">
-                        </div>
-                    </div>
 
                 </div>
             </div>
