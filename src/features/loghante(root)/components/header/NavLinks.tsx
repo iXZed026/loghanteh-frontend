@@ -16,13 +16,14 @@ interface INavLinksProps {
 
 const navItemClass = cn(
   "w-full",
+  "font-wulkan font-bold",
   "px-4 md:px-7",
-  "py-6",
+  "py-5",
   "border-b border-b-black/25",
   "hover:bg-[var(--white-light-color)]",
   "transition-all",
   "rounded-md",
-  "text-black-utility",
+  "text-black-utility md:text-xl text-lg italic",
 );
 
 function NavLinks({

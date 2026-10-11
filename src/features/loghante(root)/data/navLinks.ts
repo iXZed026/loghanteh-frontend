@@ -53,7 +53,7 @@ export const navLinks: INavLink[] = [
   {
     id: 5,
     name: {
-      en: "Museum Parts",
+      en: "Museums",
       fa: "مجموعه ها",
     },
     path: "#museum-parts",

@@ -30,11 +30,13 @@ interface ISubMenu {
 const subMenuLinkClass = cn(
   "w-full",
   "block",
-  "px-4 md:px-7 py-6",
+  "px-4 md:px-7 py-5",
   "border-b border-b-black/25",
   "hover:bg-[var(--white-light-color)]",
   "transition-all",
   "rounded-md",
+  "font-wulkan font-bold",
+  "md:text-xl text-lg italic",
   "click-scale",
 );
 
@@ -85,7 +87,7 @@ function SubMenu({
           <div
             className={cn(
               "shrink-0",
-              "py-4 px-7",
+              "py-4 md:px-7 px-4",
               "mb-5",
               "border-b-2",
               "border-[var(--crimson-color)]",

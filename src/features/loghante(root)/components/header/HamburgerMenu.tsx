@@ -73,7 +73,7 @@ function HamburgerMenu({
                     className={cn(
                         "fixed top-0 z-50",
                         "h-screen",
-                        "sm:w-140 w-full",
+                        "sm:w-120 w-full",
                         "bg-white-utility",
                         "shadow-lg",
 
