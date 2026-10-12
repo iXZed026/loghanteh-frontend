@@ -1,3 +1,4 @@
+
 "use client"
 
 import {
@@ -23,8 +24,7 @@ import {
     saveToLocalStorage,
 } from "@/lib/utils/localStorage"
 
-export const AUTH_REDIRECT_KEY =
-    "authRedirectPath"
+export const AUTH_REDIRECT_KEY = "authRedirectPath"
 
 interface CheckAuthorizedProps {
     children: ReactNode
@@ -33,10 +33,8 @@ interface CheckAuthorizedProps {
 function CheckAuthorized({
     children,
 }: CheckAuthorizedProps) {
-
     const locale = useLocale()
     const router = useRouter()
-
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
@@ -46,73 +44,41 @@ function CheckAuthorized({
     } = useProfile()
 
     useEffect(() => {
-
-        if (
-            isLoading ||
-            isAuthenticated
-        ) {
+        if (isLoading || isAuthenticated) {
             return
         }
 
-        /*
-         * Do not overwrite the original redirect path
-         * while the user is already inside authentication
-         * pages.
-         *
-         * Example:
-         *
-         * /payment
-         *   -> /login
-         *   -> /login/verify
-         *
-         * The redirect must remain /payment.
-         */
-
-        const localePrefix =
-            `/${locale}`
+        const localePrefix = `/${locale}`
 
         const normalizedPath =
             pathname === localePrefix
                 ? "/"
-                : pathname.startsWith(
-                    `${localePrefix}/`,
-                )
-                    ? pathname.slice(
-                        localePrefix.length,
-                    )
+                : pathname.startsWith(`${localePrefix}/`)
+                    ? pathname.slice(localePrefix.length)
                     : pathname
 
         const isAuthRoute =
             normalizedPath === "/login" ||
-            normalizedPath.startsWith(
-                "/login/",
-            ) ||
+            normalizedPath.startsWith("/login/") ||
             normalizedPath === "/register" ||
-            normalizedPath.startsWith(
-                "/register/",
-            )
+            normalizedPath.startsWith("/register/")
 
         if (isAuthRoute) {
             return
         }
 
-        const queryString =
-            searchParams.toString()
+        const queryString = searchParams.toString()
 
-        const currentPath =
-            queryString
-                ? `${normalizedPath}?${queryString}`
-                : normalizedPath
+        const currentPath = queryString
+            ? `${normalizedPath}${normalizedPath === "/" ? "" : ""}?${queryString}`
+            : normalizedPath
 
         saveToLocalStorage(
             AUTH_REDIRECT_KEY,
             currentPath,
         )
 
-        router.replace(
-            `/${locale}`,
-        )
-
+        router.replace(`/${locale}/login`)
     }, [
         isLoading,
         isAuthenticated,
@@ -122,10 +88,7 @@ function CheckAuthorized({
         locale,
     ])
 
-    if (
-        isLoading ||
-        !isAuthenticated
-    ) {
+    if (isLoading || !isAuthenticated) {
         return null
     }
 
