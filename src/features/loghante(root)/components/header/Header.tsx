@@ -140,7 +140,7 @@ function Header() {
             <AppLink href="/">
               <span
                 role="img"
-                aria-label="loghanteh icon"
+                aria-label="loghante icon"
                 className={cn(
                   "block w-[55px] h-[40px]",
                   "md:w-[70px] md:h-[50px]",
@@ -150,7 +150,7 @@ function Header() {
                 )}
                 style={{
                   maskImage: 'url("/images/Loghanteh-logo.svg")',
-                  WebkitMaskImage: 'url("/images/Loghante-logo.svg")',
+                  WebkitMaskImage: 'url("/images/Loghanteh-logo.svg")',
                   maskRepeat: "no-repeat",
                   WebkitMaskRepeat: "no-repeat",
                   maskPosition: "center",
