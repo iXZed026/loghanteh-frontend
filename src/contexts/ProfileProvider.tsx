@@ -34,10 +34,10 @@ interface Profile {
     email: string | null;
     phone_number: string | null;
     dob: string | null;
-    userTypeId: number;
-    userRoleId: number;
-    userType: UserType;
-    userRole: UserRole;
+    userTypeId?: number;
+    userRoleId?: number;
+    userType?: UserType;
+    userRole?: UserRole;
 }
 
 interface ProfileResponse {
