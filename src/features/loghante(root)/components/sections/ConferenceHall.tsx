@@ -9,7 +9,7 @@ function ConferenceHall() {
     const cmT = useTranslations("common")
 
     return (
-        <section id="conference-hall-reservation" className='loghante-section'>
+        <section id="conference-hall" className='loghante-section'>
             <LoghantehSectionBox
                 sectionName={t("section-name")}
                 title={t("title")}

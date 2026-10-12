@@ -155,7 +155,7 @@ function HallTicketDetails() {
 
                         <Button
                             className={cn(
-                                "text-crimson",
+                                "text-crimson md:text-base text-sm",
                                 "hover:text-[var(--crimson-opacity-color)]",
                             )}
                             onClick={

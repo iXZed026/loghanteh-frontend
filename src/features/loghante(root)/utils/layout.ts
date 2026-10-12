@@ -1,29 +1,35 @@
+
 export function getLayoutVisibility(
   pathname: string,
   locale: string,
 ) {
+  const normalizedPathname = pathname.replace(/\/+$/, "") || "/";
+
   const isProfile =
-    pathname.includes(`/${locale}/profile`);
+    normalizedPathname.includes(`/${locale}/profile`);
 
   const isLoginOrRegister =
-    pathname.includes(`/${locale}/login`) ||
-    pathname.includes(`/${locale}/register`);
+    normalizedPathname.includes(`/${locale}/login`) ||
+    normalizedPathname.includes(`/${locale}/register`);
 
   const isPayment =
-    pathname === `/${locale}/payment`;
+    normalizedPathname === `/${locale}/payment`;
+
+  const isLoading =
+    normalizedPathname.includes("/loading");
+
+  const hideLayout =
+    isProfile ||
+    isLoginOrRegister ||
+    isPayment ||
+    isLoading;
 
   return {
-    hideHeader:
-      isProfile ||
-      isLoginOrRegister ||
-      isPayment,
-
-    hideFooter:
-      isProfile ||
-      isLoginOrRegister ||
-      isPayment,
+    hideHeader: hideLayout,
+    hideFooter: hideLayout,
   };
 }
+
 
 export function getHeaderBackground(
   pathname: string,

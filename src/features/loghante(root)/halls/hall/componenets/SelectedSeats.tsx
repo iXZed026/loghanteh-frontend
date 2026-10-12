@@ -185,9 +185,11 @@ function SelectedSeats({
                 >
                     <p
                         className="
-                            text-xs
+                            fcc
+                            text-sm
                             text-black-light-utility
-                            sm:text-sm
+                            sm:text-base
+                            h-98
                         "
                     >
                         {T("no-seat")}

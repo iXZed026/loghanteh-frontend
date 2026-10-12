@@ -334,12 +334,13 @@ function CostomerRequestForm({
                                 "disabled:cursor-not-allowed",
                             )}
                             type="submit"
-                            disabled={isLoading}
+                            // disabled={isLoading}
                         >
                             {isLoading
                                 ? <Loading
                                     className="w-full"
-                                    size={40}
+                                    color="var(--white-color)"
+                                    size={50}
                                 />
                                 : <span>{T("submit-button")}</span>
                             }

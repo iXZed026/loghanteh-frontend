@@ -13,6 +13,7 @@ import ConferenceHall from '@/features/loghante(root)/components/sections/Confer
 import WorkshopAndStudios from '@/features/loghante(root)/components/sections/WorkshopAndStudios';
 import CafesAndFood from '@/features/loghante(root)/components/sections/CafesAndFood';
 import Loading from '@/components/ui/Loading';
+import LoadingPageComponenet from '@/components/shared/LoadingPage/LoadingPage';
 
 
 function Loghante() {
