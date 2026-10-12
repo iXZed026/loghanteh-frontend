@@ -1,6 +1,3 @@
-
-import AppImage from "@/components/ui/AppImage";
-
 export default function LoadingPageComponenet() {
     return (
         <main
@@ -8,12 +5,20 @@ export default function LoadingPageComponenet() {
             role="status"
             aria-label="Loading page"
         >
-            <AppImage
-                width={80}
-                height={80}
-                src="/images/Loghanteh-logo.svg"
-                alt="Loghanteh logo"
-                className="h-16 w-16 brightness-0 invert md:h-20 md:w-20"
+            <span
+                role="img"
+                aria-label="Loghanteh logo"
+                className="block h-16 w-16 bg-[var(--gold-color)] md:h-20 md:w-20"
+                style={{
+                    maskImage: 'url("/images/Loghanteh-logo.svg")',
+                    WebkitMaskImage: 'url("/images/Loghanteh-logo.svg")',
+                    maskRepeat: "no-repeat",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    WebkitMaskPosition: "center",
+                    maskSize: "contain",
+                    WebkitMaskSize: "contain",
+                }}
             />
         </main>
     );

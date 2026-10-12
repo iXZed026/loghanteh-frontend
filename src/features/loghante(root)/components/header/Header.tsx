@@ -59,10 +59,10 @@ function Header() {
         hideHeader
           ? "hidden"
           : getHeaderBackground(
-              pathname,
-              locale,
-              isScrolled,
-            ),
+            pathname,
+            locale,
+            isScrolled,
+          ),
       )}
     >
       <Container>
@@ -138,17 +138,26 @@ function Header() {
           {/* LOGO */}
           <div className="col-span-4 fcc">
             <AppLink href="/">
-              <AppImage
-                width={70}
-                height={50}
-                priority
-                src="/images/Loghanteh-logo.svg"
-                alt="loghante icon"
+              <span
+                role="img"
+                aria-label="loghanteh icon"
                 className={cn(
-                  "w-[55px] h-auto",
-                  "md:w-[70px]",
-                  "brightness-0 invert",
+                  "block w-[55px] h-[40px]",
+                  "md:w-[70px] md:h-[50px]",
+                  isScrolled ? 
+                  "bg-[var(--gold-color)]":
+                  "bg-[var(--white-color)]",
                 )}
+                style={{
+                  maskImage: 'url("/images/Loghanteh-logo.svg")',
+                  WebkitMaskImage: 'url("/images/Loghante-logo.svg")',
+                  maskRepeat: "no-repeat",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  WebkitMaskPosition: "center",
+                  maskSize: "contain",
+                  WebkitMaskSize: "contain",
+                }}
               />
             </AppLink>
           </div>

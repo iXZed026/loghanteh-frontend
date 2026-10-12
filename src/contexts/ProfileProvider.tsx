@@ -14,12 +14,30 @@ import { logout as logoutRequest } from "@/lib/api/auth/logout";
 import { removeFromLocalStorage } from "@/lib/utils/localStorage";
 import { useLocale } from "next-intl";
 
+interface UserType {
+    userTypeId: number;
+    code: string;
+    name: string;
+    description: string;
+}
+
+interface UserRole {
+    userRoleId: number;
+    code: string;
+    name: string;
+    description: string;
+}
+
 interface Profile {
     user_Id: number;
     full_name: string;
-    email: string;
-    phone_number: string;
+    email: string | null;
+    phone_number: string | null;
     dob: string | null;
+    userTypeId: number;
+    userRoleId: number;
+    userType: UserType;
+    userRole: UserRole;
 }
 
 interface ProfileResponse {
@@ -50,7 +68,7 @@ export function ProfileProvider({
     const [profile, setProfile] = useState<Profile | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const locale = useLocale()
+    const locale = useLocale();
 
     const getProfile = useCallback(async () => {
         try {
@@ -60,6 +78,7 @@ export function ProfileProvider({
 
             if (response.success) {
                 setProfile(response.data);
+                console.log("Profile fetched successfully:", response.data);
             } else {
                 setProfile(null);
             }
@@ -80,7 +99,7 @@ export function ProfileProvider({
                 response.message || "Logout failed. Please try again.",
             );
         }
-    }, []);
+    }, [locale]);
 
     const clearSession = useCallback(() => {
         removeFromLocalStorage("accessToken");
