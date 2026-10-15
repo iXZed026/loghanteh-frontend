@@ -137,7 +137,7 @@ function LoginForm({
 
             <form
                 className={cn(
-                    "fcol gap-5"
+                    "fcol gap-5 sm:w-auto sm:min-h-auto  w-full min-h-screen"
                 )}
                 onSubmit={loginSubmitedForm}
             >

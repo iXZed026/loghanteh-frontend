@@ -434,7 +434,7 @@ function TicketBox({
                             "transition-opacity",
                         )}
                     >
-                        View Details
+                        {ticketBoxT("view-details")}
                     </AppLink>
 
                 </div>

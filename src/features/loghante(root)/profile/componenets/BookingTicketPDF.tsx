@@ -1,3 +1,8 @@
+
+"use client"
+
+import { useEffect, useState } from 'react'
+
 import {
   Document,
   Font,
@@ -14,6 +19,9 @@ Font.register({
   family: 'Vazirmatn',
   src: '/fonts/persian/vazirmatn/Vazirmatn-Regular.ttf',
 })
+
+const LOGO_PATH = '/images/Loghanteh-logo.png'
+const FALLBACK_GOLD = '#d2ae6d'
 
 export interface BookingPDFTranslations {
   title: string
@@ -67,12 +75,11 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
 
-  brand: {
-    color: '#D6B477',
-    fontSize: 9,
-    letterSpacing: 2,
-    marginBottom: 7,
-    fontFamily: 'Helvetica',
+  logo: {
+    width: 90,
+    height: 36,
+    objectFit: 'contain',
+    marginBottom: 10,
   },
 
   title: {
@@ -252,10 +259,70 @@ function InfoItem({
   return (
     <View style={styles.infoItem}>
       <Text style={styles.label}>{label}</Text>
-
       <Text style={styles.value}>{value}</Text>
     </View>
   )
+}
+
+function useGoldLogo() {
+  const [logoSrc, setLogoSrc] = useState<string | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    const image = new window.Image()
+    image.crossOrigin = 'anonymous'
+
+    image.onload = () => {
+      if (cancelled) {
+        return
+      }
+
+      const canvas = window.document.createElement('canvas')
+      canvas.width = image.naturalWidth
+      canvas.height = image.naturalHeight
+
+      const context = canvas.getContext('2d')
+
+      if (!context) {
+        setLogoSrc(LOGO_PATH)
+        return
+      }
+
+      context.drawImage(image, 0, 0)
+
+      const goldColor =
+        window.getComputedStyle(window.document.documentElement)
+          .getPropertyValue('--gold-color')
+          .trim() || FALLBACK_GOLD
+
+      // Recolor visible pixels while preserving the PNG transparency.
+      context.globalCompositeOperation = 'source-in'
+      context.fillStyle = goldColor
+      context.fillRect(0, 0, canvas.width, canvas.height)
+
+      try {
+        const recoloredLogo = canvas.toDataURL('image/png')
+        setLogoSrc(recoloredLogo)
+      } catch {
+        setLogoSrc(LOGO_PATH)
+      }
+    }
+
+    image.onerror = () => {
+      if (!cancelled) {
+        setLogoSrc(LOGO_PATH)
+      }
+    }
+
+    image.src = LOGO_PATH
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return logoSrc
 }
 
 export default function BookingTicketPDF({
@@ -268,6 +335,7 @@ export default function BookingTicketPDF({
   qrCode: string
 }) {
   const seats = booking.seats ?? []
+  const logoSrc = useGoldLogo()
 
   return (
     <Document
@@ -278,7 +346,12 @@ export default function BookingTicketPDF({
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View style={styles.headerContent}>
-            <Text style={styles.brand}>LOGHANTEH</Text>
+            {logoSrc && (
+              <Image
+                src={logoSrc}
+                style={styles.logo}
+              />
+            )}
 
             <Text style={styles.title}>
               {translations.title}

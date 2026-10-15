@@ -5,7 +5,8 @@
         "date": "Date",
         "time": "time",
         "duration": "Duration",
-        "Tickets": "Tickets"
+        "Tickets": "Tickets",
+        "view-details":"View Details"
     },
     "ticket-status":{
         "upcoming":"Upcoming",

@@ -5,7 +5,8 @@
         "date": "تاریخ",
         "time": "ساعت",
         "duration": "مدت زمان",
-        "Tickets": "بلیط‌ها"
+        "Tickets": "بلیط‌ها",
+        "view-details":"دیدن جزئیات"
     },
     "ticket-status": {
         "upcoming": "به زودی",
