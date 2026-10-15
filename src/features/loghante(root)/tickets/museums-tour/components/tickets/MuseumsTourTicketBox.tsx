@@ -514,6 +514,7 @@ function MuseumsTourTicketBox({
                                             "text-xl",
                                             "font-semibold",
                                             "text-black-utility",
+                                            "bg-gold-utility",
                                             "transition-all",
                                             "duration-150",
                                             "hover:bg-crimson/10",

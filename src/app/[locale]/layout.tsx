@@ -6,7 +6,7 @@ import "@/app/globals.css";
 
 import { Analytics } from '@vercel/analytics/next';
 
-import { poppins, rozname, wulkan } from "@/font";
+import { poppins, nian, wulkan } from "@/font";
 
 import Header from "@/features/loghante(root)/components/header/Header";
 import Footer from "@/components/shared/footer/Footer";
@@ -181,7 +181,7 @@ export default async function LocaleLayout({
 
   const font =
     locale === "fa"
-      ? `${rozname.variable} text-lg font-semibold`
+      ? `${nian.variable}`
       : `${poppins.variable} ${wulkan.variable}`;
 
   return (

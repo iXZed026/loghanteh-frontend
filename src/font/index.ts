@@ -81,14 +81,30 @@ export const rozname = localFont({
   display: "swap",
 });
 
-// export const ordibehesht = localFont({
-//   src: [
-//     {
-//       path: "../../public/fonts/persian/ordibehesht/Ordibehesht.TTF",
-//       weight: "400",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--font-ordibehesht",
-//   display: "swap",
-// });
+export const nian = localFont({
+  src: [
+    {
+      path: "../../public/fonts/persian/nian/w_Nian.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/persian/nian/w_Nian Semi Bold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/persian/nian/w_Nian Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/persian/nian/w_Nian Extra Bold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+
+  variable: "--font-nian",
+  display: "swap",
+});

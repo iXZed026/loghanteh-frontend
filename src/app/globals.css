@@ -4,7 +4,7 @@
   --crimson-color: #5c2127;
   --crimson-hover-color: #630a14;
   /* --crimson-opacity-color: #5C212759; */
-   --crimson-opacity-color: #5c2127bc;
+  --crimson-opacity-color: #5c2127bc;
   --black-color: #161616;
   --black-light-color: #525252;
   --white-color: #FFFFFF;
@@ -19,12 +19,16 @@
   --font-poppins: var(--font-poppins-local);
   --font-wulkan: var(--font-wulkan-local);
   --font-rozname: var(--font-rozname-local);
+  --font-nian: var(--font-nian-local);
   /* --font-ordibehesht: var(--font-ordibehesht-local); */
 }
 
 body {
   font-family: var(--font-poppins), sans-serif;
-  font-family: var(--font-rozname), sans-serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-nian), sans-serif;
 }
 
 html {
