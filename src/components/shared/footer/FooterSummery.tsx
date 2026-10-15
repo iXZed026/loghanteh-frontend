@@ -13,13 +13,13 @@ function FooterSummery({
             "xl:col-span-3 md:col-span-4 col-span-12",
             "fcol gap-y-8",
         )}>
-            <div className='flex items-center gap-3'>
+            <div className='flex md:justify-start justify-between items-center gap-6'>
                 <AppLink
                     href='/'
                 >
                     <AppImage
-                        width={92}
-                        height={65}
+                        width={75}
+                        height={40}
                         alt='loghanteh logo'
                         src="/images/Loghanteh-logo.svg"
                         className='brightness-0 invert'
@@ -29,8 +29,8 @@ function FooterSummery({
                     href='/'
                 >
                     <AppImage
-                        width={92}
-                        height={65}
+                        width={75}
+                        height={40}
                         alt='loghanteh logo'
                         src="/images/unesco-logo.webp"
                         className='brightness-0 invert'

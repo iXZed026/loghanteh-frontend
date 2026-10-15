@@ -1,17 +1,17 @@
+
 "use client"
 
-import Modal from '@/components/shared/modal/Modal'
-import AppLink from '@/components/ui/AppLink'
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import Loading from '@/components/ui/Loading'
-import useInput from '@/hooks/useInput'
-import { login } from '@/lib/api/auth/login'
-import { cn } from '@/lib/utils/cn'
-import { saveToLocalStorage } from '@/lib/utils/localStorage'
-import { useLocale, useTranslations } from 'next-intl'
-import React, { useState } from 'react'
-import { GrGoogle } from 'react-icons/gr'
+import Modal from "@/components/shared/modal/Modal"
+import AppLink from "@/components/ui/AppLink"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
+import Loading from "@/components/ui/Loading"
+import useInput from "@/hooks/useInput"
+import { login } from "@/lib/api/auth/login"
+import { cn } from "@/lib/utils/cn"
+import { saveToLocalStorage } from "@/lib/utils/localStorage"
+import { useLocale, useTranslations } from "next-intl"
+import React, { useState } from "react"
 
 interface ILoginForm {
     googleText: string
@@ -24,31 +24,23 @@ interface IModalState {
     pushUrl?: string
 }
 
-function LoginForm({
-    googleText,
-}: ILoginForm) {
+function LoginForm({ googleText }: ILoginForm) {
+    const loginT = useTranslations("authLogin")
+    const locale = useLocale()
 
-    const loginT =
-        useTranslations("authLogin")
+    const [isLoading, setIsLoading] = useState(false)
 
-    const locale =
-        useLocale()
-
-    const [isLoading, setIsLoading] =
-        useState<boolean>(false)
-
-    const [modal, setModal] =
-        useState<IModalState>({
-            active: false,
-            success: false,
-            message: "",
-            pushUrl: undefined,
-        })
+    const [modal, setModal] = useState<IModalState>({
+        active: false,
+        success: false,
+        message: "",
+        pushUrl: undefined,
+    })
 
     const [
         emailOrPhone,
         ,
-        ChangeEmailOrPhoneValue,
+        changeEmailOrPhoneValue,
         clearEmailOrPhoneValue,
     ] = useInput("")
 
@@ -60,25 +52,24 @@ function LoginForm({
     ] = useInput("")
 
     async function loginSubmitedForm(
-        e: React.FormEvent<HTMLFormElement>
+        e: React.FormEvent<HTMLFormElement>,
     ) {
-
         e.preventDefault()
+
+        if (isLoading) return
 
         setIsLoading(true)
 
         try {
-
             const response = await login(
                 {
                     emailOrPhone,
                     password,
                 },
-                locale
+                locale,
             )
 
             if (!response.success) {
-
                 setModal({
                     active: true,
                     success: false,
@@ -87,20 +78,17 @@ function LoginForm({
                 })
 
                 clearPasswordValue()
-
                 return
             }
 
-            // Save verification token
             saveToLocalStorage(
                 "loginVerificationToken",
-                response.data.verificationToken
+                response.data.verificationToken,
             )
 
-            // Save email for verification page
             saveToLocalStorage(
                 "loginVerificationEmail",
-                response.data.email
+                response.data.email,
             )
 
             setModal({
@@ -112,11 +100,8 @@ function LoginForm({
 
             clearEmailOrPhoneValue()
             clearPasswordValue()
-
         } finally {
-
             setIsLoading(false)
-
         }
     }
 
@@ -128,7 +113,7 @@ function LoginForm({
                 success={modal.success}
                 pushUrl={modal.pushUrl}
                 onClose={() => {
-                    setModal(prev => ({
+                    setModal((prev) => ({
                         ...prev,
                         active: false,
                     }))
@@ -137,12 +122,11 @@ function LoginForm({
 
             <form
                 className={cn(
-                    "fcol gap-5 sm:w-auto sm:min-h-auto  w-full min-h-screen"
+                    "flex w-full flex-col gap-5",
+                    "min-h-dvh sm:min-h-0",
                 )}
                 onSubmit={loginSubmitedForm}
             >
-
-                {/* Phone Or Email */}
                 <div>
                     <span className="text-sm text-black-light-utility">
                         {loginT("inputs.phone-or-email")}
@@ -152,16 +136,15 @@ function LoginForm({
                         className={cn(
                             "w-full",
                             "border-b-3 border-[#525252]",
-                            "rounded-sm"
+                            "rounded-sm",
                         )}
                         type="text"
                         maxLength={100}
                         value={emailOrPhone}
-                        onChange={ChangeEmailOrPhoneValue}
+                        onChange={changeEmailOrPhoneValue}
                     />
                 </div>
 
-                {/* Password */}
                 <div>
                     <span className="text-sm text-black-light-utility">
                         {loginT("inputs.password")}
@@ -171,7 +154,7 @@ function LoginForm({
                         className={cn(
                             "w-full",
                             "border-b-3 border-[#525252]",
-                            "rounded-sm"
+                            "rounded-sm",
                         )}
                         type="password"
                         maxLength={100}
@@ -180,25 +163,12 @@ function LoginForm({
                     />
                 </div>
 
-                {/* Forget Password */}
-                <div className="text-sm text-center hover:opacity-60 transition-all">
-                    <AppLink
-                        href="/login/forgot-password"
-                    >
+                <div className="text-center text-sm transition-opacity hover:opacity-60">
+                    <AppLink href="/login/forgot-password">
                         {loginT("forgot")}
                     </AppLink>
                 </div>
 
-                {/* Sign In With Google */}
-                {/* <div className="border-2 border-black/30 h-12.5 rounded-lg fcc gap-3 text-sm">
-                    <GrGoogle className="size-4 text-purple-500" />
-
-                    <span>
-                        {googleText}
-                    </span>
-                </div> */}
-
-                {/* Login Button */}
                 <div>
                     <Button
                         type="submit"
@@ -210,17 +180,17 @@ function LoginForm({
                             "hover:opacity-85",
                         )}
                     >
-                        {isLoading
-                            ? <Loading
-                                className="w-full h-12,5"
+                        {isLoading ? (
+                            <Loading
+                                className="h-12.5 w-full"
                                 size={40}
                                 color="var(--white-color)"
                             />
-                            : loginT("login-button")
-                        }
+                        ) : (
+                            loginT("login-button")
+                        )}
                     </Button>
                 </div>
-
             </form>
         </>
     )
