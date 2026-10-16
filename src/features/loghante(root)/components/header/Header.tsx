@@ -130,7 +130,7 @@ function Header() {
             <div className="hidden md:block">
               <LanguageSwitcher
                 isScrolled={isScrolled}
-                className="w-20"
+                className="w-27"
               />
             </div>
           </div>
