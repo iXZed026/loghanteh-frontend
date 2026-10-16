@@ -21,6 +21,7 @@ import {
 import {
     formatTime,
 } from "@/lib/utils/date";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
 interface MuseumsTourTicketBoxProps {
     ticket: MuseumTourSessionResponse;
@@ -87,8 +88,8 @@ function MuseumsTourTicketBox({
                 new Date(
                     startAt.getTime() +
                     ticket.durationM *
-                        60 *
-                        1000,
+                    60 *
+                    1000,
                 ),
             [
                 startAt,
@@ -98,7 +99,7 @@ function MuseumsTourTicketBox({
 
     const sessionStatus: SessionStatus =
         currentTime <
-        startAt.getTime()
+            startAt.getTime()
             ? "upcoming"
             : currentTime <
                 endAt.getTime()
@@ -227,7 +228,7 @@ function MuseumsTourTicketBox({
 
     const currentStatus =
         statusConfig[
-            sessionStatus
+        sessionStatus
         ];
 
     return (
@@ -318,412 +319,412 @@ function MuseumsTourTicketBox({
             {/* Upcoming */}
             {sessionStatus ===
                 "upcoming" && (
-                <div
-                    className={cn(
-                        "fcol",
-                        "gap-6",
-                        "pt-5",
-                    )}
-                >
-
-                    {/* Session Information */}
                     <div
                         className={cn(
-                            "grid",
-                            "grid-cols-1",
-                            "gap-3",
-                            "sm:grid-cols-2",
+                            "fcol",
+                            "gap-6",
+                            "pt-5",
                         )}
                     >
 
+                        {/* Session Information */}
                         <div
                             className={cn(
-                                "rounded-xl",
-                                "border",
-                                "border-black/10",
-                                "bg-black/[0.025]",
-                                "p-3.5",
+                                "grid",
+                                "grid-cols-1",
+                                "gap-3",
+                                "sm:grid-cols-2",
                             )}
                         >
-                            <span
-                                className={cn(
-                                    "block",
-                                    "text-xs",
-                                    "font-medium",
-                                    "text-black-light-utility",
-                                )}
-                            >
-                                {ticketBoxT(
-                                    "capacity",
-                                )}
-                            </span>
 
-                            <span
-                                className={cn(
-                                    "mt-1",
-                                    "block",
-                                    "text-lg",
-                                    "font-bold",
-                                    "text-black-utility",
-                                )}
-                            >
-                                {ticket.capacity}
-                            </span>
-                        </div>
-
-                        <div
-                            className={cn(
-                                "rounded-xl",
-                                "border",
-                                "border-black/10",
-                                "bg-black/[0.025]",
-                                "p-3.5",
-                            )}
-                        >
-                            <span
-                                className={cn(
-                                    "block",
-                                    "text-xs",
-                                    "font-medium",
-                                    "text-black-light-utility",
-                                )}
-                            >
-                                {ticketBoxT(
-                                    "duration",
-                                )}
-                            </span>
-
-                            <span
-                                className={cn(
-                                    "mt-1",
-                                    "block",
-                                    "text-lg",
-                                    "font-bold",
-                                    "text-black-utility",
-                                )}
-                            >
-                                {ticket.durationM}{" "}
-                                {ticketBoxT(
-                                    "minutes",
-                                )}
-                            </span>
-                        </div>
-
-                    </div>
-
-                    {/* Capacity Completed */}
-                    {isCapacityCompleted ? (
-                        <div
-                            className={cn(
-                                "rounded-xl",
-                                "bg-crimson/5",
-                                "px-4",
-                                "py-4",
-                                "text-center",
-                            )}
-                        >
-                            <span
-                                className={cn(
-                                    "text-sm",
-                                    "font-semibold",
-                                    "text-crimson",
-                                    "sm:text-base",
-                                )}
-                            >
-                                {ticketBoxT(
-                                    "capacity-completed",
-                                )}
-                            </span>
-                        </div>
-                    ) : (
-                        <>
-                            {/* Ticket Quantity */}
                             <div
                                 className={cn(
-                                    "fbc",
-                                    "gap-4",
                                     "rounded-xl",
                                     "border",
                                     "border-black/10",
                                     "bg-black/[0.025]",
                                     "p-3.5",
-                                    "sm:p-4",
                                 )}
                             >
+                                <span
+                                    className={cn(
+                                        "block",
+                                        "text-xs",
+                                        "font-medium",
+                                        "text-black-light-utility",
+                                    )}
+                                >
+                                    {ticketBoxT(
+                                        "capacity",
+                                    )}
+                                </span>
 
-                                <div className="fcol gap-0.5">
+                                <span
+                                    className={cn(
+                                        "mt-1",
+                                        "block",
+                                        "text-lg",
+                                        "font-bold",
+                                        "text-black-utility",
+                                    )}
+                                >
+                                    {ticket.capacity}
+                                </span>
+                            </div>
 
-                                    <span
-                                        className={cn(
-                                            "text-sm",
-                                            "font-semibold",
-                                            "text-black-utility",
-                                            "sm:text-base",
-                                        )}
-                                    >
-                                        {ticketBoxT(
-                                            "ticket-count",
-                                        )}
-                                    </span>
+                            <div
+                                className={cn(
+                                    "rounded-xl",
+                                    "border",
+                                    "border-black/10",
+                                    "bg-black/[0.025]",
+                                    "p-3.5",
+                                )}
+                            >
+                                <span
+                                    className={cn(
+                                        "block",
+                                        "text-xs",
+                                        "font-medium",
+                                        "text-black-light-utility",
+                                    )}
+                                >
+                                    {ticketBoxT(
+                                        "duration",
+                                    )}
+                                </span>
 
-                                    <span
-                                        className={cn(
-                                            "text-xs",
-                                            "text-black-light-utility",
-                                        )}
-                                    >
-                                        {ticketBoxT(
-                                            "selected-tickets",
-                                            {
-                                                count:
-                                                    ticketCount,
-                                            },
-                                        )}
-                                    </span>
+                                <span
+                                    className={cn(
+                                        "mt-1",
+                                        "block",
+                                        "text-lg",
+                                        "font-bold",
+                                        "text-black-utility",
+                                    )}
+                                >
+                                    {ticket.durationM}{" "}
+                                    {ticketBoxT(
+                                        "minutes",
+                                    )}
+                                </span>
+                            </div>
 
-                                </div>
+                        </div>
 
+                        {/* Capacity Completed */}
+                        {isCapacityCompleted ? (
+                            <div
+                                className={cn(
+                                    "rounded-xl",
+                                    "bg-crimson/5",
+                                    "px-4",
+                                    "py-4",
+                                    "text-center",
+                                )}
+                            >
+                                <span
+                                    className={cn(
+                                        "text-sm",
+                                        "font-semibold",
+                                        "text-crimson",
+                                        "sm:text-base",
+                                    )}
+                                >
+                                    {ticketBoxT(
+                                        "capacity-completed",
+                                    )}
+                                </span>
+                            </div>
+                        ) : (
+                            <>
+                                {/* Ticket Quantity */}
                                 <div
                                     className={cn(
                                         "fbc",
-                                        "gap-2",
-                                        "rounded-full",
-                                        "bg-white",
-                                        "p-1",
-                                        "shadow-sm",
-                                        "ring-1",
-                                        "ring-black/10",
+                                        "gap-4",
+                                        "rounded-xl",
+                                        "border",
+                                        "border-black/10",
+                                        "bg-black/[0.025]",
+                                        "p-3.5",
+                                        "sm:p-4",
                                     )}
                                 >
 
-                                    <button
-                                        type="button"
-                                        aria-label={ticketBoxT(
-                                            "decrease",
-                                        )}
-                                        disabled={
-                                            !canDecrease
-                                        }
-                                        onClick={
-                                            decreaseHandler
-                                        }
-                                        className={cn(
-                                            "fcc",
-                                            "size-9",
-                                            "rounded-full",
-                                            "text-xl",
-                                            "font-semibold",
-                                            "text-black-utility",
-                                            "bg-gold-utility",
-                                            "transition-all",
-                                            "duration-150",
-                                            "hover:bg-crimson/10",
-                                            "hover:text-crimson",
-                                            "active:scale-90",
-                                            "disabled:cursor-not-allowed",
-                                            "disabled:opacity-30",
-                                            "sm:size-10",
-                                        )}
-                                    >
-                                        −
-                                    </button>
+                                    <div className="fcol gap-0.5">
 
-                                    <span
-                                        aria-live="polite"
-                                        className={cn(
-                                            "fcc",
-                                            "min-w-8",
-                                            "px-1",
-                                            "text-base",
-                                            "font-bold",
-                                            "text-black-utility",
-                                        )}
-                                    >
-                                        {
-                                            ticketCount
-                                        }
-                                    </span>
+                                        <span
+                                            className={cn(
+                                                "text-sm",
+                                                "font-semibold",
+                                                "text-black-utility",
+                                                "sm:text-base",
+                                            )}
+                                        >
+                                            {ticketBoxT(
+                                                "ticket-count",
+                                            )}
+                                        </span>
 
-                                    <button
-                                        type="button"
-                                        aria-label={ticketBoxT(
-                                            "increase",
-                                        )}
-                                        disabled={
-                                            !canIncrease
-                                        }
-                                        onClick={
-                                            increaseHandler
-                                        }
+                                        <span
+                                            className={cn(
+                                                "text-xs",
+                                                "text-black-light-utility",
+                                            )}
+                                        >
+                                            {ticketBoxT(
+                                                "selected-tickets",
+                                                {
+                                                    count:
+                                                        ticketCount,
+                                                },
+                                            )}
+                                        </span>
+
+                                    </div>
+
+                                    <div
                                         className={cn(
-                                            "fcc",
-                                            "size-9",
+                                            "fbc",
+                                            "gap-2",
                                             "rounded-full",
-                                            "bg-crimson",
-                                            "text-xl",
-                                            "font-semibold",
-                                            "text-white",
-                                            "transition-all",
-                                            "duration-150",
-                                            "hover:bg-[var(--crimson-hover-color)]",
-                                            "active:scale-90",
-                                            "disabled:cursor-not-allowed",
-                                            "disabled:opacity-30",
-                                            "sm:size-10",
+                                            "bg-white",
+                                            "p-1",
+                                            "shadow-sm",
+                                            "ring-1",
+                                            "ring-black/10",
                                         )}
                                     >
-                                        +
-                                    </button>
+
+                                        <button
+                                            type="button"
+                                            aria-label={ticketBoxT(
+                                                "decrease",
+                                            )}
+                                            disabled={
+                                                !canDecrease
+                                            }
+                                            onClick={
+                                                decreaseHandler
+                                            }
+                                            className={cn(
+                                                "fcc",
+                                                "size-9",
+                                                "rounded-full",
+                                                "text-xl",
+                                                "font-semibold",
+                                                "text-black-utility",
+                                                "bg-gold-utility",
+                                                "transition-all",
+                                                "duration-150",
+                                                "hover:bg-crimson/10",
+                                                "hover:text-crimson",
+                                                "active:scale-90",
+                                                "disabled:cursor-not-allowed",
+                                                "disabled:opacity-30",
+                                                "sm:size-10",
+                                            )}
+                                        >
+                                            <FaMinus size={10}/>
+                                        </button>
+
+                                        <span
+                                            aria-live="polite"
+                                            className={cn(
+                                                "fcc",
+                                                "min-w-8",
+                                                "px-1",
+                                                "text-base",
+                                                "font-bold",
+                                                "text-black-utility",
+                                            )}
+                                        >
+                                            {
+                                                ticketCount
+                                            }
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            aria-label={ticketBoxT(
+                                                "increase",
+                                            )}
+                                            disabled={
+                                                !canIncrease
+                                            }
+                                            onClick={
+                                                increaseHandler
+                                            }
+                                            className={cn(
+                                                "fcc",
+                                                "size-9",
+                                                "rounded-full",
+                                                "bg-crimson",
+                                                "text-xl",
+                                                "font-semibold",
+                                                "text-white",
+                                                "transition-all",
+                                                "duration-150",
+                                                "hover:bg-[var(--crimson-hover-color)]",
+                                                "active:scale-90",
+                                                "disabled:cursor-not-allowed",
+                                                "disabled:opacity-30",
+                                                "sm:size-10",
+                                            )}
+                                        >
+                                            <FaPlus size={10}/>
+                                        </button>
+
+                                    </div>
 
                                 </div>
 
-                            </div>
+                                {/* Book Button */}
+                                <Button
+                                    type="button"
+                                    disabled={
+                                        ticketCount ===
+                                        0
+                                    }
+                                    onClick={
+                                        bookTicketHandler
+                                    }
+                                    className={cn(
+                                        "w-full",
+                                        "rounded-xl",
+                                        "px-5",
+                                        "py-3",
+                                        "font-semibold",
+                                        "bg-crimson",
+                                        "text-white",
+                                        "shadow-sm",
+                                        "transition-all",
+                                        "duration-200",
+                                        "hover:bg-[var(--crimson-hover-color)]",
+                                        "hover:shadow-md",
+                                        "disabled:cursor-not-allowed",
+                                        "disabled:opacity-40",
+                                        "sm:w-auto",
+                                        "sm:self-end",
+                                    )}
+                                >
+                                    {ticketBoxT(
+                                        "book-button",
+                                    )}
+                                </Button>
+                            </>
+                        )}
 
-                            {/* Book Button */}
-                            <Button
-                                type="button"
-                                disabled={
-                                    ticketCount ===
-                                    0
-                                }
-                                onClick={
-                                    bookTicketHandler
-                                }
-                                className={cn(
-                                    "w-full",
-                                    "rounded-xl",
-                                    "px-5",
-                                    "py-3",
-                                    "font-semibold",
-                                    "bg-crimson",
-                                    "text-white",
-                                    "shadow-sm",
-                                    "transition-all",
-                                    "duration-200",
-                                    "hover:bg-[var(--crimson-hover-color)]",
-                                    "hover:shadow-md",
-                                    "disabled:cursor-not-allowed",
-                                    "disabled:opacity-40",
-                                    "sm:w-auto",
-                                    "sm:self-end",
-                                )}
-                            >
-                                {ticketBoxT(
-                                    "book-button",
-                                )}
-                            </Button>
-                        </>
-                    )}
-
-                </div>
-            )}
+                    </div>
+                )}
 
             {/* In Progress */}
             {sessionStatus ===
                 "in-progress" && (
-                <div
-                    className={cn(
-                        "fcol",
-                        "items-center",
-                        "gap-3",
-                        "py-10",
-                        "text-center",
-                    )}
-                >
-                    <span
+                    <div
                         className={cn(
-                            "fcc",
-                            "size-12",
-                            "rounded-full",
-                            "bg-gold-opacity",
-                            "text-xl",
+                            "fcol",
+                            "items-center",
+                            "gap-3",
+                            "py-10",
+                            "text-center",
                         )}
                     >
-                        •
-                    </span>
-
-                    <div className="fcol gap-1">
-
                         <span
                             className={cn(
-                                "text-lg",
-                                "font-bold",
-                                "text-gold-hover",
+                                "fcc",
+                                "size-12",
+                                "rounded-full",
+                                "bg-gold-opacity",
+                                "text-xl",
                             )}
                         >
-                            {ticketBoxT(
-                                "status.in-progress",
-                            )}
+                            •
                         </span>
 
-                        <span
-                            className={cn(
-                                "text-sm",
-                                "text-black-light-utility",
-                            )}
-                        >
-                            {ticketBoxT(
-                                "in-progress-description",
-                            )}
-                        </span>
+                        <div className="fcol gap-1">
 
+                            <span
+                                className={cn(
+                                    "text-lg",
+                                    "font-bold",
+                                    "text-gold-hover",
+                                )}
+                            >
+                                {ticketBoxT(
+                                    "status.in-progress",
+                                )}
+                            </span>
+
+                            <span
+                                className={cn(
+                                    "text-sm",
+                                    "text-black-light-utility",
+                                )}
+                            >
+                                {ticketBoxT(
+                                    "in-progress-description",
+                                )}
+                            </span>
+
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
             {/* Ended */}
             {sessionStatus ===
                 "ended" && (
-                <div
-                    className={cn(
-                        "fcol",
-                        "items-center",
-                        "gap-3",
-                        "py-10",
-                        "text-center",
-                    )}
-                >
-                    <span
+                    <div
                         className={cn(
-                            "fcc",
-                            "size-12",
-                            "rounded-full",
-                            "bg-crimson/10",
-                            "text-xl",
-                            "text-crimson",
+                            "fcol",
+                            "items-center",
+                            "gap-3",
+                            "py-10",
+                            "text-center",
                         )}
                     >
-                        ×
-                    </span>
-
-                    <div className="fcol gap-1">
-
                         <span
                             className={cn(
-                                "text-lg",
-                                "font-bold",
+                                "fcc",
+                                "size-12",
+                                "rounded-full",
+                                "bg-crimson/10",
+                                "text-xl",
                                 "text-crimson",
                             )}
                         >
-                            {ticketBoxT(
-                                "status.ended",
-                            )}
+                            ×
                         </span>
 
-                        <span
-                            className={cn(
-                                "text-sm",
-                                "text-black-light-utility",
-                            )}
-                        >
-                            {ticketBoxT(
-                                "ended-description",
-                            )}
-                        </span>
+                        <div className="fcol gap-1">
 
+                            <span
+                                className={cn(
+                                    "text-lg",
+                                    "font-bold",
+                                    "text-crimson",
+                                )}
+                            >
+                                {ticketBoxT(
+                                    "status.ended",
+                                )}
+                            </span>
+
+                            <span
+                                className={cn(
+                                    "text-sm",
+                                    "text-black-light-utility",
+                                )}
+                            >
+                                {ticketBoxT(
+                                    "ended-description",
+                                )}
+                            </span>
+
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
         </article>
     );
