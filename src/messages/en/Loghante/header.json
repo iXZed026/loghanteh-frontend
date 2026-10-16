@@ -3,5 +3,7 @@
     "ticket-button": "Reserve Ticket",
     "close-button": "close",
     "back-button": "back",
-    "shop-button": "shop"
+    "shop-button": "shop",
+    "profile":"Profile"
+
 }
