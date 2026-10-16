@@ -172,7 +172,7 @@ function HamburgerMenu({
                                         )}
                                     >
                                         <FiUser className="size-5" />
-                                        Profile
+                                        {t("profile")}
                                     </Button>
                                 </AppLink>
                             ) : (

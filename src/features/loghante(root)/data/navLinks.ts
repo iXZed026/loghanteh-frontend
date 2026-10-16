@@ -20,7 +20,7 @@ export const navLinks: INavLink[] = [
       en: "Home Page",
       fa: "صفحه اصلی",
     },
-    path: "#hero",
+    path: "/",
   },
 
   {
@@ -29,17 +29,17 @@ export const navLinks: INavLink[] = [
       en: "Shop",
       fa: "فروشگاه",
     },
-    path: "#shop",
+    path: "/shop",
   },
 
-  {
-    id: 3,
-    name: {
-      en: "About Museum",
-      fa: "درباره موزه",
-    },
-    path: "#about",
-  },
+  // {
+  //   id: 3,
+  //   name: {
+  //     en: "About Museum",
+  //     fa: "درباره موزه",
+  //   },
+  //   path: "/about",
+  // },
 
   {
     id: 4,
@@ -47,7 +47,7 @@ export const navLinks: INavLink[] = [
       en: "Events & Courses",
       fa: "رویداد ها و دوره ها",
     },
-    path: "#events-and-courses",
+    path: "/events-and-courses",
   },
 
   {
@@ -56,7 +56,7 @@ export const navLinks: INavLink[] = [
       en: "Museums",
       fa: "مجموعه ها",
     },
-    path: "#museum-parts",
+    path: "/museum-parts",
     museumParts,
   },
 
@@ -66,7 +66,7 @@ export const navLinks: INavLink[] = [
       en: "Cinema & Theaters",
       fa: "سینما و تئاتر",
     },
-    path: "#cinema-and-theaters",
+    path: "/cinema-and-theater",
   },
 
   {
@@ -84,7 +84,7 @@ export const navLinks: INavLink[] = [
       en: "Conference Hall Reservation",
       fa: "رزرو سالن کنفرانس",
     },
-    path: "#conference-hall",
+    path: "/conference-hall",
   },
 
   {
@@ -93,7 +93,7 @@ export const navLinks: INavLink[] = [
       en: "Virtual Tour",
       fa: "تور مجازی",
     },
-    path: "#virtual-tour",
+    path: "/virtual-tour",
   },
 
   {
@@ -102,17 +102,17 @@ export const navLinks: INavLink[] = [
       en: "Workshops and studios",
       fa: "کارگاه ها و استودیو ها",
     },
-    path: "#workshops-and-sstudios",
+    path: "/workshops-and-studios",
   },
 
-  {
-    id: 11,
-    name: {
-      en: "Contact Us",
-      fa: "تماس با ما",
-    },
-    path: "#footer",
-  },
+  // {
+  //   id: 11,
+  //   name: {
+  //     en: "Contact Us",
+  //     fa: "تماس با ما",
+  //   },
+  //   path: "#footer",
+  // },
 
   // {
   //   id: 11,
@@ -120,6 +120,6 @@ export const navLinks: INavLink[] = [
   //     en: "Work With Us",
   //     fa: "همکاری با ما",
   //   },
-  //   path: "#work-with-us",
+  //   path: "/work-with-us",
   // },
 ];
