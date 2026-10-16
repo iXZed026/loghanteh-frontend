@@ -1,16 +1,19 @@
+
 {
-    "title": "Ticket purchased",
+    "title": "Tickets purchased",
+    "show-more": "Show more",
+    "empty": "You don't have any tickets at the moment.",
     "ticket-box": {
         "status": "Ticket status",
         "date": "Date",
-        "time": "time",
+        "time": "Time",
         "duration": "Duration",
         "Tickets": "Tickets",
-        "view-details":"View Details"
+        "view-details": "View details"
     },
-    "ticket-status":{
-        "upcoming":"Upcoming",
-        "past":"Past",
-        "progress":"In progress"
+    "ticket-status": {
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "progress": "In progress"
     }
 }

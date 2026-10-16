@@ -144,7 +144,7 @@ function LanguageSwitcher({
                 className={cn(
                     "flex items-center justify-center",
                     "gap-1",
-                    "md:py-3 py-2",
+                    "md:py-3 py-2 ",
                     "font-semibold",
                     "cursor-pointer",
                     "transition-all",

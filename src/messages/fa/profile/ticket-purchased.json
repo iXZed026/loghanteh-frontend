@@ -1,16 +1,19 @@
+
 {
-    "title": "بلیط خریداری شد",
+    "title": "بلیت‌های خریداری‌شده",
+    "show-more": "نمایش بیشتر",
+    "empty": "در حال حاضر هیچ بلیتی ندارید.",
     "ticket-box": {
-        "status": "وضعیت بلیط",
+        "status": "وضعیت بلیت",
         "date": "تاریخ",
         "time": "ساعت",
         "duration": "مدت زمان",
-        "Tickets": "بلیط‌ها",
-        "view-details":"دیدن جزئیات"
+        "Tickets": "تعداد بلیت‌ها",
+        "view-details": "مشاهده جزئیات"
     },
     "ticket-status": {
-        "upcoming": "به زودی",
+        "upcoming": "پیش‌رو",
         "past": "گذشته",
-        "progress": "در حال برگذاری"
+        "progress": "در حال برگزاری"
     }
 }
